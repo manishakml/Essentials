@@ -6,6 +6,7 @@
  */
  
  #include <iostream>
+ #include <stream>
  using namespace std;
  
  string reverse(string s) {
@@ -20,6 +21,7 @@
   }
   
   /**
+   * Tested; could be optimized in terms of shorter code.
    * Time complexity:  O(n) where n is the number of characters in the string.
    * Space complexity: O(1).
    * Of course, a smart answer would be to use std::reverse().
