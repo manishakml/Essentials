@@ -21,4 +21,5 @@
    * Time complexity: O(1)
    * Space complexity: O(1)
    * Proof: https://discuss.leetcode.com/topic/26999/theorem-all-4s-shall-be-false/2
+   * Note: Can be solved in another preferred way with data structures.
    */
