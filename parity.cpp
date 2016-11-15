@@ -14,6 +14,6 @@ for(unsigned long i = 0; i < 16-BIT; i++) {
   pc[i] = parity_compute(i);
 }
 
-short parity_compute2 (unsigned long n) {
+short parity_compute2 (const unsigned long &n) {
   return pc[n >> 48] ^ pc[(n >> 32) & 0xffff] ^ pc[(n >> 16) & 0xffff] ^ pc[n & 0xffff];
 }
