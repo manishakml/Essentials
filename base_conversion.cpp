@@ -1,7 +1,7 @@
 //EPI 5.7
 string base_conversion(const string &s, const int &b1, const int &b2) {
   string res;
-  int x;
+  int x=0;
   bool neg = s[0] == '-'? true: false;
   
   for(int i = neg; i < s.size(); i++) {
