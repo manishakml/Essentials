@@ -77,7 +77,5 @@ int getWeight(const vector<NestedInteger> &A) {
 /** 
  * Tested.
  * Time complexity:  O(n) where 'n' is the total number of elements after decomposition. //To be confirmed from other sources
- * Space complexity: O(d) for the call stack where 'd' is the max depth.
- * Eg. [1,[[2]]] has 2 integers (1 and 2) and 2 nested lists. So, n=3. Max depth is 3. So, time complexity = space complexity = O(3).
- * Note that this problem can be done iteratively with the same complexities by using an explicit stack.
+ * Space complexity: O(d) for the call stack where 'd' is the max depth or the queue.
  */
