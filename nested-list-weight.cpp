@@ -27,7 +27,7 @@
  #include <iostream>
  #include <vector>
  using namespace std;
- 
+ //recursive
  int helper(const vector<NestedInteger> &arr, int level) {
     if (arr.size() == 0) {
        return 0;
@@ -47,9 +47,36 @@
     return helper(arr, 1);
  }
 
+//iterative
+int getWeight(const vector<NestedInteger> &A) {
+   queue<NestedInteger> q;
+   int sum = 0;
+   int l = 0;
+   for (NestedInteger a: A) {
+      q.push(a);
+   }
+ 
+   while(!q.empty()) {
+      l++;
+      int size = q.size();
+      for(int i = 0 ; i < size; i++) {
+         NestedInteger tmp = q.front();
+         q.pop();
+         if(tmp.isInteger()) {
+            sum += tmp.getInteger() * l;
+         } else {
+            for(NestedInteger t: tmp.getList()) {
+               q.push(t);
+            }
+         }
+      }
+   }
+   return sum; 
+}
+
 /** 
- * Not tested.
- * Time complexity:  O(n) where 'n' is the total number of elements after decomposition.
+ * Tested.
+ * Time complexity:  O(n) where 'n' is the total number of elements after decomposition. //To be confirmed from other sources
  * Space complexity: O(d) for the call stack where 'd' is the max depth.
  * Eg. [1,[[2]]] has 2 integers (1 and 2) and 2 nested lists. So, n=3. Max depth is 3. So, time complexity = space complexity = O(3).
  * Note that this problem can be done iteratively with the same complexities by using an explicit stack.
