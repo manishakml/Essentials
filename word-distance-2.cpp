@@ -31,7 +31,7 @@
        int i = 0, j = 0, minD = INT_MAX, m = A.size(), n = B.size();
        
        while(i < m && j < n) {
-          minD = min(minD, abs(A[i],B[j]));
+          minD = min(minD, abs(A[i]-B[j]));
           if(A[i] < B[j]) {
              i++;
           } else {
@@ -42,7 +42,7 @@
     }
  };
  
- /* Not tested.
+ /* Tested.
   * Time complexity: O(n) where n is the number of words in the list.
   * Space complexity: O(n).
   */
