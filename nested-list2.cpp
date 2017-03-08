@@ -41,6 +41,57 @@
         int d = getD(nestedList);
         return helper(nestedList, d);
     }
+
+//Iterative
+int getD(const vector<NestedInteger> &A) {
+        queue<NestedInteger> q;
+        int d = 0;
+        for (NestedInteger a: A) {
+            q.push(a);
+        }
+ 
+        while(!q.empty()) {
+            d++;
+            int size = q.size();
+            for(int i = 0 ; i < size; i++) {
+                NestedInteger tmp = q.front();
+                q.pop();
+                if(!tmp.isInteger()) {
+                    for(NestedInteger t: tmp.getList()) {
+                        q.push(t);
+                    } 
+                }
+            }
+        }
+        return d;
+   }
+
+    
+    int depthSumInverse(vector<NestedInteger>& nestedList) {
+        int d = getD(nestedList);
+        queue<NestedInteger> q;
+        int sum = 0;
+        for (NestedInteger a: nestedList) {
+            q.push(a);
+        }
+ 
+        while(!q.empty()) {
+            int size = q.size();
+            for(int i = 0 ; i < size; i++) {
+                NestedInteger tmp = q.front();
+                q.pop();
+                if(tmp.isInteger()) {
+                    sum += tmp.getInteger() * d;
+                } else {
+                    for(NestedInteger t: tmp.getList()) {
+                        q.push(t);
+                    }
+                }
+            }
+            d--;
+        }
+        return sum;
+    }
     
     /* Tested.
      * Time complexity: O(n) where n is the number of elements after decomposition.
