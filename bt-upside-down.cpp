@@ -53,5 +53,5 @@
 
 /* Tested.
  * Time complexity: O(n) where n is the number of nodes.
- * Space complexity: O(n) for the call stack if recursive.
+ * Space complexity: O(n) for the call stack if recursive, O(1) otherwise.
  */
