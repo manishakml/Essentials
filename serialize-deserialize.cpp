@@ -15,6 +15,7 @@
  #include<sstream>
  using namespace std;
  
+//recursive (preorder)
  string serialize(Node *root) {
   if(!root) return "# "   //Note the space after # which is required for stringstream as a splitter.
   return to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right);
@@ -36,6 +37,38 @@
   istringstream in(s);
   return deserialize(in);
  }
+
+//iterative (level order)
+string serialize(Node *root) {
+    queue<Node *> q;
+    string res = "";
+    
+    q.push(root);
+    
+    while(!q.empty) {
+        Node *t = q.front();
+        q.pop();
+        res += t? to_string(t->val) : "#";
+        res += " ";         //Note the space needed by stringstream
+        if(t) {
+            q.push(t->left);
+            q.push(t->right);
+        }
+    }
+    return res;
+}
+
+Node *deserialize(string s) {
+    istringstream in(s);
+    string val;
+    in >> val;
+    queue<Node *> q;
+    Node *root = (val == "#")? nullptr : new Node(stoi(val);
+    q.push(root);   
+    
+                                                  
+                                                  
+}
  
  /* Tested.
   * Time complexity: O(n)
