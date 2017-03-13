@@ -65,9 +65,22 @@ Node *deserialize(string s) {
     queue<Node *> q;
     Node *root = (val == "#")? nullptr : new Node(stoi(val);
     q.push(root);   
-    
-                                                  
-                                                  
+    while(!q.empty()) {
+        int sz = q.size();
+        for(int i=0; i < sz; i++) {
+            Node *t = q.front();
+            q.pop();
+            if(t) {
+                in >> val;
+                t->left = (val == "#")? nullptr : new Node(stoi(val));
+                in >> val;
+                t->right = (val == "#")? nullptr : new Node(stoi(val));
+                q.push(t->left);
+                q.push(t->right);
+            }
+        }
+    }
+    return root;                                  
 }
  
  /* Tested.
