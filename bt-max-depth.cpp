@@ -11,6 +11,7 @@ int depth(Node *root) {
 }
 
 /* Tested.
+ * Note: Iterative is similar to level order traversal where you keep track of count instead of printing/storing nodes.
  * Time complexity: O(n) where n is the number of nodes.
  * Space complexity: O(n).
  */
