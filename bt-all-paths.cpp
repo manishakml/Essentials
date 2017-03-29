@@ -33,7 +33,39 @@ vector<string> r2lp(Node* root) {
   return res;
 }
 
+//iterative
+#include<stack>
+
+vector<string> binaryTreePaths(TreeNode* root) {
+        vector<string> res;
+        if(!root) return res;
+        stack<TreeNode *> s;
+        stack<string> ps;
+        s.push(root);
+        ps.push(to_string(root->val));
+        
+        while(!s.empty()) {
+            TreeNode* t = s.top(); s.pop();
+            string p = ps.top(); ps.pop();
+            
+            if(!t->left && !t->right) {
+                res.push_back(p);
+                continue;
+            }
+            
+            if(t->left) {
+                s.push(t->left);
+                ps.push(p+"->"+to_string(t->left->val));
+            }
+            if(t->right) {
+                s.push(t->right);
+                ps.push(p+"->"+to_string(t->right->val));
+            }
+        }
+        return res;
+ }
+
 /* Tested.
  * Time complexity: O(n) where n is the number of nodes.
- * Space complexity: O(n) for the call stack
+ * Space complexity: O(n) for the call stack or explicit stack.
  */
