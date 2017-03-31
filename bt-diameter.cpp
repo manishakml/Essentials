@@ -29,8 +29,28 @@ int height(TreeNode *root) {
         return max(lh+rh, max(ld,rd));
     }
 
+//Optimized to O(n)
+int helper(TreeNode* root, int *ht) {
+        if(!root) return 0;
+        int lh = 0, rh = 0;
+        
+        int ld = helper(root->left, &lh);
+        int rd = helper(root->right,&rh);
+        
+        *ht = max(lh,rh) + 1;
+        
+        return max(lh+rh, max(ld,rd));
+    }
+    
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root) return 0;
+        int ht = 0;
+        return helper(root,&ht);
+        
+    }
+
 /* Tested.
  * Note: If diameter is defined by number of nodes rather than number of edges, the only change will be in the last line 'return max(lh+rh+1, max(ld,rd));'
- * Time complexity: O(n) where n is the number of nodes.
+ * Time complexity: O(n^2) where n is the number of nodes for version1; O(n) for v2.
  * Space complexity: O(n) for the call stack.
  */
