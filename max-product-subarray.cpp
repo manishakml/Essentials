@@ -24,7 +24,7 @@
     }
     
 /* Tested.
- * Note: Comparison of element vs cur_max/min* element is the same as max subarray qn. Comparison with the opposite kind is necessary if the element is negative since negation might change signs and also multiplying -ve number by a big number yields a smaller number.
+ * Note: Comparison of element vs cur_max/min element is the same as max subarray qn. Comparison with the opposite kind is necessary if the element is negative since negation might change signs and also multiplying -ve number by a big number yields a smaller number.
  * Time complexity: O(n) where n is the number of elements.
  * Space complexity: O(1)
  */
