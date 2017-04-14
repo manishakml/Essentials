@@ -28,6 +28,7 @@ List* merge(List* l1, List* l2) {
 }
 
 /* Tested.
+ * Note: *& means reference to the pointer and the Node, i.e. you can modify the Node as well as the pointer. 
  * Time complexity: O(n) where n is the size of shorter list.
  * Space complexity: O(1).
  */
