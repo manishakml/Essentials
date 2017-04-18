@@ -60,6 +60,6 @@ int search(vector<int>& nums, int target) {
     }
 
 /* Tested.
- * Time complexity: O(log n)
+ * Time complexity: O(log n) where n is the number of elements.
  * Space complexity: O(1)
  */
