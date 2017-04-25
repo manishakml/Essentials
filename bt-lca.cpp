@@ -52,10 +52,11 @@ TreeNode* helper(TreeNode* root, TreeNode* p, TreeNode* q, bool& v1, bool& v2) {
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         bool v1 = false, v2 = false;
         TreeNode *lca = helper(root,p,q,v1,v2);
-        
+        //if(p&q are on either sides || if q is on right and p is in its subtree || if p is on left and q is in its subtree)
         if(v1 && v2 || v2&&find(root,p) || v1&&find(root,q)) {
             return lca;
         }
+        //either or both nodes not present
         return nullptr;
     }
     
