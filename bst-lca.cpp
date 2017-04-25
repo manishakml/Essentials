@@ -35,6 +35,14 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         }
         return root;
     }
+// approach 3
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        if(!root) return NULL;
+        while((root->val-p->val) * (root->val-q->val) > 0) {
+            root= (root->val>p->val)?root->left:root->right;
+        }
+        return root;
+    }
 
 /* Tested.
  * Time complexity: O(log n) where n is the number of nodes.
