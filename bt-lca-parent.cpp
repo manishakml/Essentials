@@ -72,6 +72,7 @@ Node * commonAncestor(Node *p, Node *q) {
 
 
 /* Not tested.
+ * Note there is another space-intensive solution on gfg using a map.
  * Time complexity: O(log n) where n is the number of nodes or O(h) where h is the height of the tree.
  * Space complexity: O(1)
  */
