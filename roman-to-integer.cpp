@@ -22,9 +22,13 @@ int roman2int(string s) {
         int sum = 0;
         int n = s.length();
         if (!n) return sum;
+       //check invalid char
+        if(m.find(s.back()) == m.end()) return 0;
         sum += m[s.back()];
         
         for(int i = n-2; i >= 0; i--) {
+               //check invalid char
+            if(m.find(s[i]) == m.end()) return 0;
             if(m[s[i]] >= m[s[i+1]]){
                 sum += m[s[i]];
             } else {
