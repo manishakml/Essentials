@@ -21,6 +21,7 @@ int roman2int(string s) {
                                     
         int sum = 0;
         int n = s.length();
+        if (!n) return sum;
         sum += m[s.back()];
         
         for(int i = n-2; i >= 0; i--) {
