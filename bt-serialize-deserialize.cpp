@@ -20,6 +20,22 @@
   if(!root) return "# "   //Note the space after # which is required for stringstream as a splitter.
   return to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right);
  }
+
+//serialize after converting to ostringstream
+void serialize(TreeNode* root, ostringstream& out) {
+        if (root) {
+            out << root->val << ' ';
+            serialize(root->left, out);
+            serialize(root->right, out);
+        } else {
+            out << "# ";
+        }
+    }
+string serialize(TreeNode* root) {
+        ostringstream out;
+        serialize(root, out);
+        return out.str();
+    }
  
  Node *deserialize(istringstream& in) {
   string val;
@@ -81,6 +97,51 @@ Node *deserialize(string s) {
         }
     }
     return root;                                  
+}
+                                                  
+                                                  
+//Using istream and ostream - untested
+int main() {
+        Node* root = new Node(5);
+        root->left = new Node(6);
+        root->left->left = new Node(7);
+        root->right = new Node(8);
+        root->right->right = new Node(9);
+        root->right->left = new Node(10);
+        print(root);
+    
+    //Note how ostream/istream are initialized with filebuf
+        filebuf fb;
+        fb.open("abc",ios::out);
+        ostream os(&fb);
+        ser(os,root);
+        fb.open("abc",ios::in);
+        istream in(&fb);
+        Node* res = des(in);
+        print(res);
+        return 1;
+}
+void ser(ostream& os, Node* root) {
+        if(!root) os << "# ";
+        else {
+                os << root->val;
+                os << ' ';
+                ser(os,root->left);
+                ser(os,root->right);
+        }
+}
+Node *des(istream& is) {
+    //adapting to stringstream logic
+        ostringstream os;
+        os  << is.rdbuf();
+        istringstream in(os.str());
+        string val;
+        in >> val;
+        if(val == "#") return nullptr;
+        Node* root = new Node(stoi(val));
+        root->left = des(in);
+        root->right = des(in);
+        return root;
 }
  
  /* Tested.
