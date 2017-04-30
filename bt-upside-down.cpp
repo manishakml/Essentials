@@ -52,7 +52,7 @@
  }
 
 /* Tested.
- * Note: Refer to: https://discuss.leetcode.com/topic/40924/java-recursive-o-logn-space-and-iterative-solutions-o-1-space-with-explanation-and-figure
+ * Note: Refer to: https://discuss.leetcode.com/topic/40924/java-recursive-o-logn-space-and-iterative-solutions-o-1-space-with-explanation-and-figure. Refer to solutions tab for the pictures.
  * Time complexity: O(n) where n is the number of nodes.
  * Space complexity: O(n) for the call stack if recursive, O(1) otherwise.
  */
