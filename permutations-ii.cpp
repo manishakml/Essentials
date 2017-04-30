@@ -53,6 +53,7 @@ bool helper(vector<int> &A, vector<vector<int>> &res, int n) {
     }
     
     /* Tested.
+     * Note: Parallization/multithreading is easy for the 'next permutation' approach. The concept being: If I have 200k permutations to generate and have 2 cores, I find out 100kth permutation by kth permutation algorithm and can parallely process from there since each permutation is only dependent on the previous one.
      * Time complexity: O(n!*n) where n is the number of elements.
      * Space complexity: O(1)
      */
