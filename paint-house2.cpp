@@ -52,6 +52,43 @@
   return ans;
 }
 
+// Without repeating the logic for f and s. Also, modularizing.
+void find_min2(vector<vector<int>> &costs, int& f, int& s, int& k, int& i){
+        for(int j = 0; j < k; j++) {
+            if(f == -1 || costs[i][j] < costs[i][f]) {
+                s=f;
+                f=j;
+            } else if(s==-1 || costs[i][j] < costs[i][s]) {
+                s=j;
+            }
+        }
+    }
+    
+    int minCostII(vector<vector<int>>& costs) {
+        if (costs.size() == 0 || costs[0].size() == 0) return 0;
+  
+        int n = costs.size(), k = costs[0].size();
+  
+        if(k == 1 && n > 1) return INT_MAX;
+  
+        int f, s, ans = INT_MAX;
+  
+        for(int i = 0; i < n; i++) {
+            if(i > 0) {
+                for(int j = 0; j < k; j++) {
+                    costs[i][j] += (j == f)? costs[i-1][s]:costs[i-1][f];
+                }
+            }
+            f = -1, s = -1;
+            find_min2(costs,f,s,k,i);
+        }
+        
+        for(int j = 0; j < k; j++) {
+            ans = min(ans, costs[n-1][j]);
+        }
+        return ans;
+    }
+
 /* Tested.
  * Note: O(nk^2) approach is direct modification of paint-house1 where extra k loop scans the minimum of prev level.
  * Time complexity: O(nk) where n is the number of houses, k is the number of colors.
