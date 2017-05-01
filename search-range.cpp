@@ -24,7 +24,7 @@ int first(vector<int>& A, int k) {
   return -1;
 }
 
-int first(vector<int>& A, int k) {
+int last(vector<int>& A, int k) {
   int l = 0, n = A.size(), r = n-1, m = 0;
   while(l <= r) {
     m = l + ((r-l)>>1);
