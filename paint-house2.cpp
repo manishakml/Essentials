@@ -71,7 +71,7 @@ void find_min2(vector<vector<int>> &costs, int& f, int& s, int& k, int& i){
   
         if(k == 1 && n > 1) return INT_MAX;
   
-        int f, s, ans = INT_MAX;
+        int f, s;
   
         for(int i = 0; i < n; i++) {
             if(i > 0) {
@@ -83,10 +83,7 @@ void find_min2(vector<vector<int>> &costs, int& f, int& s, int& k, int& i){
             find_min2(costs,f,s,k,i);
         }
         
-        for(int j = 0; j < k; j++) {
-            ans = min(ans, costs[n-1][j]);
-        }
-        return ans;
+        return costs[n-1][f];
     }
 
 // If original array cannot be modified, then use explicit O(k) space. We need sval and fval since dp is getting modified. Also, for cases where s remains -1 (n: 1), we need the conditional assignment for fval and sval.
@@ -108,7 +105,7 @@ void find_min2(int dp[], int& f, int& s, int& k){
   
         if(k == 1 && n > 1) return INT_MAX;
   
-        int f, s, ans = INT_MAX, fval,sval;
+        int f, s, fval,sval;
         
         int dp[k];
         for(int j = 0; j < k; j++) {
@@ -132,5 +129,5 @@ void find_min2(int dp[], int& f, int& s, int& k){
 /* Tested.
  * Note: O(nk^2) approach is direct modification of paint-house1 where extra k loop scans the minimum of prev level.
  * Time complexity: O(nk) where n is the number of houses, k is the number of colors.
- * Space complexity: O(1).
+ * Space complexity: O(1) or O(k) as required.
  */
