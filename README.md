@@ -7,3 +7,4 @@ a. Nested list weight
 b. Factor combinations.
 c. Merge k lists - all approaches
 2. Good explanation of permutations-ii without using 'next' permutation approach.
+3. Paint house when houses are arranged in a circle: Can we use the same logic as house robber 2?
