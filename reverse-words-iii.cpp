@@ -16,6 +16,7 @@
         int w = 0, r = 0;
         while(r < n) {
             while(r < n && s[r] == ' ') r++;
+            if (r==n) break;                        //if the string is only spaces or if processing is done until n-2 and r is at n-1 (which has to be a space)
             while(r < n && s[r] != ' ') {
                 s[w++] = s[r++];
             }
@@ -23,7 +24,7 @@
             reverse(s.begin()+start, s.begin()+w);
             start = ++w;
         }
-        return s.substr(0, w-1);
+        return w?s.substr(0, w-1):"";               //"" if w has not moved since string contained only spaces
     }
     
     /* Tested.
