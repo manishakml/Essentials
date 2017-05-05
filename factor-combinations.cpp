@@ -61,6 +61,6 @@
  }
  
  /* Tested.
-  * Time complexity : 2^n (exponential)
-  * Space complexity: 
+  * Time complexity : factorial (specifically, (n/i)!) - to be verified.
+  * Space complexity: log n - to be verified
   */
