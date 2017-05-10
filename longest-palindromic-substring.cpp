@@ -10,6 +10,7 @@
  */
 #include<iostream>
 #include<string>
+#include<cstring>
 using namespace std;
 
 //Approach 1 - 2 pointers
