@@ -46,7 +46,7 @@ B:     b1 → b2 → b3
     }
     
     /* Tested.
-     * Time complexity: O(n) where n is the number of nodes.
+     * Time complexity: O(n+m) where n i& m are the number of nodes of the 2 lists.
      * Space complexity:O(1)
      */
   
