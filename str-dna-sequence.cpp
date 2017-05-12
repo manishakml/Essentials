@@ -30,5 +30,5 @@ vector<string> dna(string s){
 
 /* Tested.
  * Time complexity: O(n) where n is the string length.
- * Space complexity: O(n).
+ * Space complexity: O(2^20). Since there are only 4 nucleotides, each can be represented in bits as 00, 01, 10, 11. Thus 10-char string can be repn as 20-bit string. So, the upper bound on the storage is less than an int = 2^20.
  */
