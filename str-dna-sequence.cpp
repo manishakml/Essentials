@@ -30,6 +30,8 @@ vector<string> dna(string s){
 
 //Approach 2: Extensible to any substr length, not just 10
 vector<string> findRepeatedDnaSequences(string s) {
+  //if istream s; is given instead of string, just convert it to string
+  //string str(istreambuf_iterator<char>(s),{}); And use str in the same way.
         vector<string> res;
         int n = 10;
         if(s.length() < 11) return res;
