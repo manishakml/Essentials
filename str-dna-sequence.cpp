@@ -69,7 +69,7 @@ vector<string> findRepeatedDnaSequences(string s) {
                 A[val] = true;
             }
         }
-        //if alphabetical ordering of result is required, use this. Note that B array already has it in alphabetical order. We only have to convert the bits into char.
+        //if alphabetical ordering of result is required, use this. Note that B array already has it in alphabetical order. We only have to convert the bits into char. You can also use approach 1 and sort the result. Just note that the sorting is on fixed number of results (4^10). So, it is fixed time complexity of O(4^10), not a generic O(nlgn).
         /*for(int i = 0; i < m; i++) {
            if(B[i]) {
                 int k = i;
