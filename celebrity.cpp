@@ -26,6 +26,7 @@ int celebrity(int n) {
 }
 
 /* Tested.
+ * Note: How to implement knows(): Use 2d matrix if data is not huge. Use map if data is huge(since it will be sparse mostly).
  * Time complexity: O(n) assuming knows(i,j) is O(1).
  * Space complexity: O(1)
  */
