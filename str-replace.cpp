@@ -7,7 +7,7 @@
  using namespace std;
  
  string str_replace(string s, string a, string b) { // a is the text string, b is the replacement string
-  if(s.length() == 0 || a.length() == 0 || b.length() == 0) return s;  //clarify what needs to be done
+  if(s.length() == 0 || a.length() == 0 || b.length() == 0 || a.equals(b)) return s;  //clarify what needs to be done - these are edge cases
   int idx = s.find(a);
   if(idx == npos) return s;
   return s.substr(0,idx) + b + str_replace(s.substr(idx+a.length()),a,b);
