@@ -18,7 +18,7 @@ vector<Interval> merge(vector<Interval>& A) {
   res.push_back(A[0]);
   for(int i = 1; i < n; i++) {
     if(A[i].start <= res.back().end) {
-      res.back().end = max(res.back.end(),A[i].end);
+      res.back().end = max(res.back().end,A[i].end);
     } else {
       res.push_back(A[i]);
     }
