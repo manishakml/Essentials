@@ -80,6 +80,12 @@ int main() {
 /* Not tested thoroughly.
  * Have timed on my machine using $time ./a.out for both approaches.
  * If there are only few intervals but the range is very high, approach 1 does not make sense and vice versa.
+ * Explain the table of complexities for add and get and tradeoffs: 
+ * Add     |    Get       | Approach
+ * O(lgn)       O(n)        Approach 2
+ * O(n)         O(1)        Approach 2 (merge in add and updateGloballen in add, return Globallen in get)
+ * O(1)         O(nlgn)     push into vector in add, sort/merge/getlen in get
+ * O(pts)       O(1)        Approach 1
  * Time complexity of Approach 1: O(total points in all range of all intervals) i.e., O(sum of total coverage length of all intervals)
  * Time complexity of Approach 2: If merge is part of get(), get = O(n) and add = O(log n). If merge is part of add(), add = O(n) (can be optimized to log n))and get = O(n)
  * Space complexity: O(sum of lengths of all interval ranges) for Approach 1, O(no_of_intervals) for Approach 2.
