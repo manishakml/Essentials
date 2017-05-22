@@ -31,6 +31,9 @@
         }
         return cur?cur->val:NULL;
     }
+
+//Optimization: Add an lcount (number of left children count) for each node, during insertion. kthsmallest becomes very simple then.
+
     
     /* Tested.
      * Time complexity: O(n) where n is the number of nodes
