@@ -32,7 +32,7 @@
         return cur?cur->val:NULL;
     }
 
-//Optimization: Add an lcount (number of left children count) for each node, during insertion. kthsmallest becomes very simple then.
+//Approach 2: Optimization: Add an lcount (number of left children count) for each node, during insertion. kthsmallest becomes very simple then.
 struct Node {
       int val;
       int lcount;
