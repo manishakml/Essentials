@@ -47,7 +47,7 @@ bool isoN(vector<string>& A) {
     }
     return res;
 }
-  // n strings. return true if any pair is isomorphic . Time complexity: O(n^2m)       
+  // n strings. return true if any pair is isomorphic . Time complexity: O((n^2)*m)       
 bool isoN_1(vector<string>& A) {
         for(int i = 0; i < A.size()-1; i++) {
             for(int j = i+1; j < A.size(); j++) {
