@@ -57,7 +57,7 @@ bool isoN_1(vector<string>& A) {
         }
         return false;
 }
-// n strings. group isomorphic strings together. Time complexity: O(n^2m). Space complexity: O(nm) if we count in terms of individual chars.
+// n strings. group isomorphic strings together. Time complexity: O((n^2)*m). Space complexity: O(nm) if we count in terms of individual chars.
 vector<vector<string> > iso_group(vector<string> &A) {
     unordered_map<string,vector<string> > m;
     unordered_set<string> s;
