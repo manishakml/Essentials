@@ -56,10 +56,18 @@ int depth(Node *p) {
 Node * commonAncestor(Node *p, Node *q) {
   int d1 = depth(p);
   int d2 = depth(q);
-  int diff = abs(d1-d2);
-  Node *large = d1>d2?p:q;
+  int diff = d1-d2;
+  
+  //p always holds the deeper node
+  if(diff < 0) {
+      Node* t = p;
+      p = q;
+      q = t;
+      diff = -diff;
+  }
+  
   while(diff) {
-    large = large->parent;
+    p = p->parent;
     diff--;
   }
   while(p && q) {
