@@ -1,7 +1,7 @@
 /* Given 2 sorted linked lists, find the union and intersection of them.*/
 
 //Union is same as merge-2-linked-lists. Union will include duplicates
-//To avoid duplicates, use the following to the result list
+//To avoid duplicates, use the following to the result list : O(n)
 ListNode* deleteDuplicates(ListNode* head) {
         ListNode* cur = head;
         while(cur && cur->next) {
