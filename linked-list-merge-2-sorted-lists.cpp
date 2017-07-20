@@ -7,7 +7,7 @@ using namespace std;
 
 void append(List*&h, List*&t, List*& l) {
   h?t->next = l:head = l;
-  tail = l;
+  t = l;
 }
 void append_and_advance(List*& h, List*& t, List*& l) {
   append(h,t,l);
