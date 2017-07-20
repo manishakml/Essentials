@@ -82,6 +82,6 @@ bool helper(vector<int> &A, vector<vector<int>> &res, int n) {
  * Time complexity: O(n*n!) where n is the number of elements. n! because there are n! number of results. n*n! because we are outputting n items n! times. http://stackoverflow.com/questions/5363619/complexity-of-recursive-string-permutation-function
  * Space complexity: O(n) since only n stack frames needed at any point (equal to the height of the recursion tree)
  * For approach 2:
- * Time complexity: O(n!*n) wjere 'next' permutation takes O(n) and we do that for n! permutations.
+ * Time complexity: O(n!*n) where 'next' permutation takes O(n) and we do that for n! permutations.
  * Space complexity: O(1).
  */
