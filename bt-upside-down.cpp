@@ -41,7 +41,7 @@
   Node *temp = nullptr;
   
   while(cur) {
-    next = cur;
+    next = cur->left;
     cur->left = temp;
     temp = cur->right;
     cur->right = prev;
