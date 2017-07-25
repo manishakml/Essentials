@@ -17,7 +17,7 @@
  
 //recursive (preorder)
  string serialize(Node *root) {
-  if(!root) return "# "   //Note the space after # which is required for stringstream as a splitter.
+  if(!root) return "# ";   //Note the space after # which is required for stringstream as a splitter.
   return to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right);
  }
 
