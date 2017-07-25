@@ -17,6 +17,7 @@ typedef struct packet {
     int time;
 }pkt;
 
+//Approach 1 using stack
 pair<int,int> fntm(const string &fn, const vector<pkt> &A) {
     pair<int,int> res;
     stack<pkt> s;
@@ -57,6 +58,48 @@ pair<int,int> fntm(const string &fn, const vector<pkt> &A) {
     return res;
 }
 
+// Approach 2 without stack
+pair<int,int> fntm(const string &fn, const vector<string> &A) {
+    pair<int,int> res;
+    int f_start = -1, f_end = -1, excl = 0;
+    bool parent_seen = false, child_seen = false;
+    pkt child_pkt;
+    for(int i = 0; i < A.size(); i++) {
+        string t = A[i];
+        istringstream in(t);
+        string val;
+        vector<string> B;
+        while(getline(in,val,',')) {
+            B.push_back(val);
+        }
+        pkt a;
+        a.name = B[0];
+        a.indicator = B[1] == "start"?1:0;
+        a.time = stoi(B[2]);
+
+        if(a.indicator && (a.name==fn || (parent_seen && !child_seen))) {
+            if(a.name==fn) {
+                parent_seen = true;
+                f_start = a.time;
+            } else {
+                child_seen = true;
+                child_pkt = a;
+            }
+        }
+        if(!a.indicator && (a.name==fn || a.name == child_pkt.name)){
+            if(a.name==fn) {
+                f_end = a.time;
+            } else {
+                excl += a.time - child_pkt.time;
+                child_seen = false;
+            }
+        }
+    }
+    res.first = f_end - f_start;
+    res.second = res.first - excl;
+    return res;
+}
+
 int main() {
     int n;
     pkt p;
@@ -76,6 +119,7 @@ int main() {
 
 /* Not tested thoroughly.
  * Note: We should only bother about the immediate children of the function in question. Deeper nestings can be ignored.
+ * Note 2: Since only 2 layers are needed, stack is not needed - approach 2
  * Time complexity: O(n) where there are n log messages.
- * Space complexity: O(n) where there are n immediate children for the function in question.
+ * Space complexity: O(n) where there are n immediate children for the function in question (approach 1). O(1) for approach 2.
  */
