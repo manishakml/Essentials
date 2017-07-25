@@ -5,7 +5,6 @@
  * All messages are ordered by timestamp and we can assume that there are no out-of-order messages.
  */
  
- //Approach 1: Each log is in the form of a struct
  #include<iostream>
 #include<stack>
 #include<vector>
@@ -25,6 +24,19 @@ pair<int,int> fntm(const string &fn, const vector<pkt> &A) {
 
     for(int i = 0; i < A.size(); i++) {
         pkt a = A[i];
+     /* If each log is in the form of string:
+     string t = A[i];
+        istringstream in(t);
+        string val;
+        vector<string> B;
+        while(getline(in,val,',')) {
+            B.push_back(val);
+        }
+        pkt a;
+        a.name = B[0];
+        a.indicator = B[1] == "start"?1:0;
+        a.time = stoi(B[2]);
+        */
         if(a.indicator && (a.name==fn || (!s.empty() && s.top().name==fn))) {
             s.push(a);
             if(a.name==fn) {
