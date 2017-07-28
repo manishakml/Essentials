@@ -65,9 +65,55 @@ public:
     }
 };
 
+//Approach 2 - using double ended bfs
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        unordered_set<string> s,head,tail, *ph, *pt;
+        for(string a: wordList) s.emplace(a);
+        if(s.find(endWord) == s.end()) return 0;
+        
+        head.emplace(beginWord);
+        tail.emplace(endWord);
+        
+        int c = 1;
+        while(!head.empty() && !tail.empty()){
+            if(head.size()<tail.size()){
+                ph = &head;
+                pt = &tail;
+            } else {
+                ph = &tail;
+                pt = &head;
+            }
+            c++;
+            unordered_set<string> temp;
+            for(auto it = ph->begin(); it != ph->end(); it++){
+                string t = *it;
+                s.erase(t);
+                for(int j = 0; j < t.length(); j++){   
+                    string p = t;
+                    for(int k = 0; k < 26; k++){
+                        p[j] = 'a'+k;
+                          unordered_set<string>::iterator it = pt->find(p);
+                          if(it != pt->end()) {
+                              return c;
+                          }
+                          it = s.find(p);
+                          if(it != s.end()) {
+                            temp.emplace(p);
+                            s.erase(p);
+                        }
+                    }
+                }
+            }
+            swap(*ph,temp);
+        }
+        return 0;
+    }
+};
+
 /* Tested.
- * Note 1: Can be optimized using 2-sided bfs.
  * Note 2: If a list of strings is given as dictionary, convert to a set.
- * Time complexity: O(n * length of word) where n is the dictionary size.
+ * Time complexity: O(n * length of word) where n is the dictionary size for approach 1.
  * Space complexity: O(n).
  */
