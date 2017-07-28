@@ -68,6 +68,6 @@ public:
 /* Tested.
  * Note 1: Can be optimized using 2-sided bfs.
  * Note 2: If a list of strings is given as dictionary, convert to a set.
- * Time complexity: O(length of path * length of word)
- * Space complexity: O(n) where n is the dictionary size.
+ * Time complexity: O(n * length of word) where n is the dictionary size.
+ * Space complexity: O(n).
  */
