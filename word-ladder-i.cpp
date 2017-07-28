@@ -114,6 +114,6 @@ public:
 
 /* Tested.
  * Note 2: If a list of strings is given as dictionary, convert to a set.
- * Time complexity: O(n * length of word) where n is the dictionary size for approach 1.
+ * Time complexity: O(n * length of word) where n is the dictionary size or O(m^len) where m is the number of words spawned by each word * len is the length of the ladder. for approach 1. It is O(2m^(len/2)).
  * Space complexity: O(n).
  */
