@@ -58,7 +58,8 @@ public:
 };
 
 /* Tested.
- * Note: removeRandom() just needs a call to remove(val) at line 56.
+ * Note1: removeRandom() just needs a call to remove(val) at line 56.
+ * Note2: To use with templates, refer to the hashtable problem.
  * Time complexity: O(1)
  * Space complexity: O(n) where n is the number of elements.
  */
