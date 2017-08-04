@@ -14,3 +14,4 @@ d. Array partition.
 6. bst-ser-deser: verify stoi error.
 7. Union/intersection of ll: Union - how to handle duplicates inherently. Intersection - what's the intended result of intersection of (1,2,3) and (2,2)? Is it (2) or (2,2)?
 8. Implement hash table: 1) How to instatntiate HashTable class?, 2) Try to implement Remove, 3) Add concurrency.
+9. Remaining questons and design.
