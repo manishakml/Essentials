@@ -77,6 +77,7 @@ vector<vector<string> > iso_group(vector<string> &A) {
             }
         }
     }
+ //i has iterated from 0 to n-2 idx. n-1 might/mightn't have been taken care of
     if(!s.empty()) {
         m[A[A.size()-1]].push_back(A[A.size()-1]);
         s.erase(A[A.size()-1]);
