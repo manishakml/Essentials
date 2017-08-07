@@ -46,5 +46,5 @@ TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
 
 /* Tested.
  * Time complexity: O(log n) where n is the number of nodes.
- * Space complexity: O(n) for the call stack, O(1) otherwise.
+ * Space complexity: O(log n) for the call stack, O(1) otherwise.
  */
