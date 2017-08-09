@@ -74,6 +74,34 @@ bool helper(vector<int> &A, vector<vector<int>> &res, int n) {
         return res;
     }
 
+//approach 3 - generic for any backtracking
+void helper(vector<int> &nums, vector<vector<int>> &res, vector<int> &ans, vector<bool> &used){
+        if(ans.size() == nums.size()) {
+            res.push_back(ans);
+        } else {
+            for(int i = 0; i < nums.size(); i++) {
+                if(used[i]) continue;
+                ans.push_back(nums[i]);
+                used[i] = true;
+                helper(nums,res,ans,used);
+                ans.pop_back();
+                used[i] = false;
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> ans;
+        int n = nums.size();
+        if(!n) return res;
+        if(n == 1) {
+            res.push_back(nums);
+            return res;
+        }
+        vector<bool> used(n,false);
+        helper(nums,res,ans,used);
+        return res;
+    }
 /* Tested.
  * For approach 1:
  * Note1: Refer http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/ for explanation.
