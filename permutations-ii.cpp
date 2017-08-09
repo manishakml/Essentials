@@ -51,6 +51,36 @@ bool helper(vector<int> &A, vector<vector<int>> &res, int n) {
             res.push_back(nums);
         return res;
     }
+
+//approach 2
+void helper(vector<int> &nums, vector<vector<int>> &res, vector<int> &ans, vector<bool> &used){
+        if(ans.size() == nums.size()) {
+            res.push_back(ans);
+        } else {
+            for(int i = 0; i < nums.size(); i++) {
+                if(used[i] || i>0 && nums[i] == nums[i-1] && !used[i-1]) continue;
+                ans.push_back(nums[i]);
+                used[i] = true;
+                helper(nums,res,ans,used);
+                ans.pop_back();
+                used[i] = false;
+            }
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        vector<vector<int>> res;
+        vector<int> ans;
+        int n = nums.size();
+        if(!n) return res;
+        if(n == 1) {
+            res.push_back(nums);
+            return res;
+        }
+        vector<bool> used(n,false);
+        sort(nums.begin(),nums.end());
+        helper(nums,res,ans,used);
+        return res;
+    }
     
     /* Tested.
      * Note: Parallization/multithreading is easy for the 'next permutation' approach. The concept being: If I have 200k permutations to generate and have 2 cores, I find out 100kth permutation by kth permutation algorithm and can parallely process from there since each permutation is only dependent on the previous one.
