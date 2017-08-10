@@ -30,7 +30,7 @@
         if(v < lower || v > upper) return nullptr;
         TreeNode* root = new TreeNode(v);
         root->left = deserialize(is,lower,root->val);
-        root->left = deserialize(is,root->val,upper);
+        root->right = deserialize(is,root->val,upper);
         return root;
     }
 
