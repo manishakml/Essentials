@@ -14,6 +14,6 @@
  }
  
  /* Not tested.
-  * Time complexity:O(n) where n is the input string length
+  * Time complexity:O(n*m) where n is the input string length and m is the length of a.
   * Space complexity: O(n) for the call stack
   */
