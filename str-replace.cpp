@@ -14,6 +14,6 @@
  }
  
  /* Not tested.
-  * Time complexity:O(n*m) where n is the input string length and m is the length of a.
+  * Time complexity:O(n*m) where n is the input string length and m is the length of a. C++ string find is implemented as O(n*m). Otherwise it is a linear algorithm above.
   * Space complexity: O(n) for the call stack
   */
