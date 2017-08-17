@@ -58,7 +58,7 @@ void merge() {
 }
 public:
 int get() {
-       // vector<pair<int,int> > res = merge();
+        merge();
         int len = 0;
         for(int i = 0; i < res.size(); i++) {
                 len += res[i].second - res[i].first;
@@ -67,7 +67,7 @@ int get() {
 }
 void add(int f, int t) {
         min_heap.push(make_pair(f,t));
-        merge();
+        //merge();
 }
 };
 int main() {
