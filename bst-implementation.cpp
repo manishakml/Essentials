@@ -12,6 +12,7 @@ Node* newNode(int key) {
   newN->val = key;
   newN->left = NULL;
   newN->right = NULL;
+  return newN;
 }
 
 Node* insert(Node* root, int key) {
