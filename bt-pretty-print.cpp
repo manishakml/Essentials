@@ -59,7 +59,9 @@ void inorder(Node *root) {
                                 cur = cur->left;
                         }
                 }
-        }void print(Node* root) {
+        }
+ 
+ void print(Node* root) {
         inorder(root);
         queue<Node*> q;
         if(!root) return;
