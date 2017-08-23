@@ -62,7 +62,7 @@ vector<string> findRepeatedDnaSequences(string s) {
             if(A[val]) {
                 
               //if alphabetical order is not required, push it into result immediately; otherwise omit this step.
-              res.push_back(s.substr(i-9,10));
+              res.push_back(s.substr(i-n-1,n));
                 
               B[val] = true;
             } else{
