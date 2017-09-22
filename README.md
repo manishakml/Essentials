@@ -17,3 +17,4 @@ e. Multi dimensional sum
 8. Implement hash table: 1) How to instatntiate HashTable class?, 2) Try to implement Remove, 3) Add concurrency.
 9. Remaining questons and design.
 10. Space complexity and execution of best attack.
+11. k closest values to bst - can it be solved less than O(n) for balanced bst - how?
