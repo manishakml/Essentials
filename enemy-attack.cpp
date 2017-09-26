@@ -19,7 +19,7 @@ typedef struct cell {
 }Cell; 
  
 void dfs(vector<vector<int> >& A, int i, int j, int& c, int n, int m, int type) { 
-    if(A[i][j] == INT_MIN || A[i][j] != type || i < 0 || i > n-1 || j < 0 || j > m-1) { 
+    if(i < 0 || i > n-1 || j < 0 || j > m-1 || A[i][j] == INT_MIN || A[i][j] != type) { 
         return; 
     } 
     A[i][j] = INT_MIN; 
@@ -33,9 +33,9 @@ void dfs(vector<vector<int> >& A, int i, int j, int& c, int n, int m, int type) 
 
 vector<Cell> attack(vector<vector<int> >& A, int type) {
     vector<Cell> res;
-    int m = A.size();
-    if(!m) return res;
-    int n = A[0].size();
+    int n = A.size();
+    if(!n) return res;
+    int m = A[0].size();
     
     for(int i = 0; i < n; i++) {
         for(int j = 0; j < m; j++) {
@@ -77,7 +77,7 @@ int main() {
     return 0;
 }       
 
-/* Not tested.
+/* Not tested thoroughly.
  * Time complexity: O(nm) for processing, O(nmlognm) for sorting. Hence O(nmlognm).
  * Space complexity: O(nm)
  */
