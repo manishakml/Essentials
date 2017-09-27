@@ -1,5 +1,5 @@
 /* Similar to LC 373
- * Given 2 arrays and k, find the first k pairs with the smallest product. The pair should have first element from array1 and second from array2 */
+ * Given 2 arrays and k, find the first k pairs with the smallest product. The pair should have first element from array1 and second from array2.
  */
  #include<iostream>
 #include<queue>
