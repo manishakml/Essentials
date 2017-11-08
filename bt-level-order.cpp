@@ -73,6 +73,7 @@ vector<vector<int>> levelOrder(TreeNode* root) {
 
 /* Tested.
  * Time complexity: O(n) where n is the number of nodes.
- * Space complexity: O(n).
+ * Space complexity: O(n). If we analyse space complexity more keenly, it is O(2^h) where h is the height of tree. But in a skewed tree of a great height with one node per level, O(2^h) is a great overstatement. O(n) is a more reasonable measure and hence a tighter bound.
+ * Refer: https://stackoverflow.com/questions/17635950/space-complexity-of-level-order-traversal-traversal-using-a-queue
  */
 
