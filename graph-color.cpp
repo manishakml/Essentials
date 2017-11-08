@@ -37,6 +37,37 @@ bool is2Colorable(Node *start) {
     return true;
 }
 
+//dfs - note that this approach works for a forest as well. Modify bfs to work with forests by having the calling function use adjacency matrix and operate on all nodes.
+bool dfs(Node *start) {
+    if(start.getColor() == 0) {
+        start.setColor(1);
+    }
+    vector<Node *> children = start.getNeighbors();
+    int color = start.getColor();
+    for(Node *c : children) {
+        if(c.getColor() == color) {
+            return false;
+        }
+        if(c.getColor == 0) {
+            color == 1? c.setColor(2):c.setColor(1);
+            return dfs(c);
+        }
+    }
+    return true;
+}
+bool is2Colorable(vector<vector<int>> &A) {
+    int v = A.size();
+
+    for(int i = 0; i < n; i++) {
+        if(A[i].getColor() == 0) {
+            if(!dfs(A[i])){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 /* Not tested.
  * Time complexity: O(2*e) where e is the number of edges
  * Space complexity: O(n) where n is the number of vertices
