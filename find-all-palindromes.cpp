@@ -38,7 +38,7 @@ unordered_set<string> findPalindromes(string s){
     return res;
 }
 
-/* Not tested.
+/* Not tested thoroughly.
  * Time complexity: O(3^n). Consider it like a tree.
             n
          /  \   \
