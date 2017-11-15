@@ -153,20 +153,13 @@ void deleteTNode(Tnode* node){
     }
     //inorder successor in case node to be deleted has 2 children
     Tnode* tmp = minNode(node->right);
-    //adjust parent's l/r to point to the grand child
-    if(!par) {
-        root = tmp;
+    //copy inorder successor's contents to current node and adjust links
+    if(tmp){
+        node->val = tmp->val;
+        node->ptr = tmp->ptr;
+        tmp->ptr->adr = node;
     }
-    else if(par->left == node){
-        par->left = tmp;
-    } else {
-        par->right = tmp;
-    }
-    //adjust parent to grand parent
-    if(tmp) {
-        tmp->parent = par;
-    }
-    free(node);
+    deleteTNode(tmp);
 }
 
 //O(1)
