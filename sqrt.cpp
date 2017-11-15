@@ -1,10 +1,11 @@
-/* Given n, return its square root. */
+/* Given n, return its square root OR LC 69 */
 
 #include<iostream>
 #include<climits>
 using namespace std;
 double precision = 0.0000000001;
 
+//Approach 1 if doubles have to be handled
 double my_sqrt(double n) {
 //handle negatives
     if(n < 0) {
@@ -35,6 +36,28 @@ double my_sqrt(double n) {
     return INT_MIN;
 }
 
+//Approach 2 if int only has to be handled
+int mySqrt(int x) {
+    int l, r;
+    
+    if(x< 2) return x;
+    l = 1;
+    r = x;
+    
+
+    while(l <= r) {
+        int m = l + ((r-l)>>1);
+        if (m > x/m ) {
+            r = m-1;
+        } else {
+           if((m+1) > x/(m+1))
+                return m; 
+            l = m+1;
+        }
+    }
+    return INT_MIN;
+}
+
 int main(){
     double n;
     cout << "N:";
@@ -43,7 +66,7 @@ int main(){
     return 1;
 }
 
-/* Not tested thoroughly.
+/* A-1 : Not tested thoroughly. A-2 : Tested.
  * Time complexity: O(log (n/precision)) - we are doing binary search on n*(1/precision) values.
  * Spcae complexity: O(1)
  */
