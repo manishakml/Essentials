@@ -42,3 +42,8 @@ int main(){
     cout << endl << my_sqrt(n);
     return 1;
 }
+
+/* Not tested thoroughly.
+ * Time complexity: O(log (n/precision)) - we are doing binary search on n*(1/precision) values.
+ * Spcae complexity: O(1)
+ */
