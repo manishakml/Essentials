@@ -32,6 +32,7 @@
     }
     
     /* Tested.
+     * Note: Reason why inorder works for BST: Inorder on bst gives a sorted array. To find k val closest to x, we have to look at the neighbors of x (k times). this is optimized since we get a sorted array.
      * Time complexity: O(n)
      * Space complexity: O(k) for queue or O(log n) for call stack
      */
