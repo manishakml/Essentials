@@ -33,7 +33,7 @@ public:
 };
 
 template<class T>
-sortedStream<T> merge(sortedStream<T> &A) {
+sortedStream<T> merge(vector<sortedStream<T>> &A) {
         mergedSortedStream m;
         int k = A.size();
         for(int i = 0; i < k; i++) {
