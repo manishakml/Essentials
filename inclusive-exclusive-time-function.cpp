@@ -121,5 +121,5 @@ int main() {
  * Note: We should only bother about the immediate children of the function in question. Deeper nestings can be ignored.
  * Note 2: Since only 2 layers are needed, stack is not needed - approach 2
  * Time complexity: O(n) where there are n log messages.
- * Space complexity: O(n) where there are n immediate children for the function in question (approach 1). O(1) for approach 2.
+ * Space complexity: O(1) since we store only 'start' of only 1 child at a time (approach 1). O(1) for approach 2.
  */
