@@ -4,7 +4,7 @@
 using namespace std;
 
 template<class T>
-auto cmp = [](pair<T,int> a, pair<T,int> b){a.first < b.first;};
+auto cmp = [](pair<T,int> a, pair<T,int> b){a.first > b.first;}; // '>' since min_heap uses greater()
 
 priority_queue<pair<T,int>, vector<pair<T,int>>, decltype(cmp)> min_heap;
 
@@ -18,6 +18,15 @@ public:
 template<class T>
 class mergedSortedStream extends sortedStream {
 public:
+        mergedSortedStream(vector<sortedStream> &A){
+                int k = A.size();
+                for(int i = 0; i < k; i++) {
+                        if(A[i].hasNext()){
+                                min_heap.push(make_pair(A[i].next(),i));
+                        }
+                }
+        }
+        
         T next(){
                         pair<T,int> t = min_heap.top();
                         min_heap.pop();
@@ -34,13 +43,7 @@ public:
 
 template<class T>
 sortedStream<T> merge(vector<sortedStream<T>> &A) {
-        mergedSortedStream m;
-        int k = A.size();
-        for(int i = 0; i < k; i++) {
-                if(A[i].hasNext()){
-                        min_heap.push(make_pair(A[i].next(),i));
-                }
-        }
+        mergedSortedStream m(A);        
         return m;
 }
 
