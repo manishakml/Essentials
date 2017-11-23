@@ -26,6 +26,6 @@ void columnify(vector<int> &A, int c){
 
 
 /* Not tested thoroughly.
- * Time complexity: O(n^2)
+ * Time complexity: O(n) since we visit each element only once
  * Space complexity: O(1)
  */
