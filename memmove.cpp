@@ -3,7 +3,9 @@
 void *memmove(void *dst, void *src, size_t n) {
   char *p = dst;
   const char *q = src;
-  if(p > q){    // copy backwards
+  if(p > q){
+    p = p+n-1; q=q+n-1;
+    // copy backwards
     while(n--) {
       *p-- = *q--;
     }
