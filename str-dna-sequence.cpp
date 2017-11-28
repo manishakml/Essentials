@@ -38,7 +38,7 @@ vector<string> findRepeatedDnaSequences(string s) {
         //since there are only 4 chars, map them to bits
         unordered_map<char,int> map= { {'A',0}, {'C',1}, {'G',2}, {'T',3}};
         const string t = "ACGT";
-        // if n is 10, each substr is 2*10 bits. So, there are 2^20 such substr possible.
+        // if n is 10, each substr is 2*10 bits. So, there are 4^10 (4*4*...10 times) = 2^20 such substr possible.
         int m = 1 << (n*2);
         //We are following incremental approach. Suppose s = actgactg and n = 3. After processing 'act', we remove a and process g, thereby not recomputing ct. When we right shift, we get ---actg. We should remove a. So, we use mask on rhs of c.
         int mask = m-1;
