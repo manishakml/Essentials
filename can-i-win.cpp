@@ -56,6 +56,6 @@ public:
 };
     
 /* Tested.
- * Time complexity: O(2^n) since we are memoizin using the map. O(n^n) otherwise. n is maxChoosableInteger.
+ * Time complexity: O(2^n) since we are memoizin using the map. O(n^n) otherwise. n is maxChoosableInteger. We compute each subprob at most once. There are 2^n subprob -how? There are n choosable integers. Each integer has 2 states - used/unused. So, considering all combinations, 2*2*..n_times = 2^n
  * Space complexity: O(n)
  */
