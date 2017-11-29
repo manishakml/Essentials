@@ -29,7 +29,7 @@ Node *compact(Node *root, int n){
         //from 2nd node onwards...
         if(!q2.empty()){
         //if the node in question is going to make the parent's children count exceed n, pop the parent
-            while(q2.front()->children.size() >= n){
+            if(q2.front()->children.size() == n){
                 q2.pop();
             }
             //add it as a child to the previously added node if that has < n children
