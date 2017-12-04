@@ -13,13 +13,13 @@ Bitset(int n){
 void set(int i){  //set i-th bit
 int slot = i/32;  //if 0-31 in 0th slot and so on
 int idx = i%32;   //to find the bit within the slot
-A[slot] |= (1 << idx);
+A[slot] |= (1U << idx);
 }
 
 bool get(int i){
 int slot = i/32;  //if 0-31 in 0th slot and so on
 int idx = i%32;   //to find the bit within the slot
-return A[slot] & (1 << idx);
+return A[slot] & (1U << idx);
 }
 
 void clear(int i){
@@ -43,4 +43,5 @@ A[slot] &= !(1U << idx);
  }
  return res;
  }
+};
  
