@@ -50,8 +50,43 @@ bool isSafe(vector<vector<char>>& A, int n, int m, int i, int j, vector<vector<b
         }
         return c;
     }
+
+//Approach 2 withoutvisited matrix
+bool isSafe(vector<vector<char>>& A, int n, int m, int i, int j) {
+        return (i >= 0 && i < n && j >=0 && j < m && A[i][j] == '1');
+    }
+    
+    void dfs(vector<vector<char>>& A, int n, int m, int i, int j) {
+        int R[] = {0,1,0,-1};
+        int C[] = {1,0,-1,0};
+        A[i][j] = -1;
+        
+        for(int k = 0; k < 4; k++) {
+            if(isSafe(A,n,m,i+R[k],j+C[k])) {
+                dfs(A,n,m,i+R[k],j+C[k]);
+            }
+        }
+    }
+    
+    int numIslands(vector<vector<char>>& grid) {
+        int c = 0;
+        int n = grid.size();
+        if(!n) return 0;
+        int m = grid[0].size();
+        //vector<vector<bool>> vis(n,vector<bool>(m,0));
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j] == '1') {
+                    dfs(grid,n,m,i,j);
+                    c++;
+                }
+            }
+        }
+        return c;
+    }
     
 /* Tested.
  * Time complexity: O(nm).
- * Space complexity: O(nm).
+ * Space complexity: O(nm) for both. (Vis matrix and call stack in (1) and call stack in (2)).
  */
