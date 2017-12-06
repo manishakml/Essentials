@@ -48,7 +48,7 @@ int main(){
 }
 
 /* Not tested thoroughly.
- * Time complexity: O(n!).
+ * Time complexity: Exponential if unmemoized, polynomial if memoized.
  * Memoization avoid re-solving few of the same subproblems.
  * Consider "xyzxyabc" and {xyz,xy,z}. First recursive call (sz = 2): xy z xy "" So, map has {{abc,""},{xyabc,xy},{zxyabc,z xy},{xyzxyabc,xy z xy}}. 2nd recursive call (sz = 3): xyz helper(xyabc) = xyz (from map)xy.
  * However "leetleet" {leet} will solve leet twice in the first recursive call - it won't be optimized by cache.
