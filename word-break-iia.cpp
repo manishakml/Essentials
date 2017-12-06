@@ -18,13 +18,16 @@ string helper(string s, unordered_set<string> &d, unordered_map<string,string> &
         if(d.find(sub) != d.end()){
             //suffix
             string str = helper(s.substr(sz),d,m);
-            res = sub + " " + str;
-            //store it for future use
-            m[s] = res;
-            return res;   //One valid result found, return.
+            //only if result is not ""
+            if(str.size() > 0){
+                res = sub + " " + str;
+                //store it for future use
+                m[s] = res;
+                return res;   //One valid result found, return.
+            }
         }
     }
-    //store res as ""
+    //store res as "" and return it if no valid result is found
     m[s] = res;
     return res;
 }
@@ -45,6 +48,9 @@ int main(){
 }
 
 /* Not tested thoroughly.
- * Time complexity: O(n!). Memoization avoid re-solving few of the same subproblems. Consider "xyzxyabc" and {xyz,xy,z}. First recursive call (sz = 2): xy z xy "" So, map has {{abc,""},{xyabc,xy},{zxyabc,z xy},{xyzxyabc,xy z xy}}. 2nd recursive call (sz = 3): xyz helper(xyabc) = xyz (from map)xy.
+ * Time complexity: O(n!).
+ * Memoization avoid re-solving few of the same subproblems.
+ * Consider "xyzxyabc" and {xyz,xy,z}. First recursive call (sz = 2): xy z xy "" So, map has {{abc,""},{xyabc,xy},{zxyabc,z xy},{xyzxyabc,xy z xy}}. 2nd recursive call (sz = 3): xyz helper(xyabc) = xyz (from map)xy.
+ * However "leetleet" {leet} will solve leet twice in the first recursive call - it won't be optimized by cache.
  * Space complexity: O(n)
  */
