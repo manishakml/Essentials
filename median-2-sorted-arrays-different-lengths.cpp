@@ -82,7 +82,42 @@ public:
     }
 };
 
+//Understandable approach - refer to leetcode discuss for explanation
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int m = nums1.size();
+        int n = nums2.size();
+        
+        if(m > n) {
+            swap(nums1,nums2);
+            swap(m,n);
+        }
+        
+        int imin = 0, imax = m;
+        
+        while(imin <= imax){
+            int i = (imin+imax)/2;
+            int j = (m+n+1)/2 - i;
+            if(i > imin && nums1[i-1] > nums2[j]) {
+                imax = i-1;
+            } else if(i < imax && nums2[j-1] > nums1[i]){
+                imin = i+1;
+            } else {
+                int left = 0;
+                if(i == 0) left = nums2[j-1];
+                else if(j == 0) left = nums1[i-1];
+                else left = max(nums1[i-1],nums2[j-1]);
+                if((m+n)%2 != 0) return left;
+                int right = 0;
+                if(i == m) right = nums2[j];
+                else if(j == n) right = nums1[i];
+                else right = min(nums1[i],nums2[j]);
+                return (left+right)/2.0;
+            }
+        }
+        return 0.0;
+    }
+
 /* Tested.
- * Time complexity: O(log(m+n)) where m and n are 2 lengths of arrays.
+ * Time complexity: O(log(m+n)) where m and n are 2 lengths of arrays. Approach 1: log(min(m,n))
  * Space complexity: O(1).
  */
