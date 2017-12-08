@@ -1,5 +1,5 @@
 /* LC 17
- * Given a digit string, return all possible letter combinations that the number could represent.
+ * Given a digit string, return all possible legal letter combinations(valid words) that the number could represent.
  */
  class Solution {
     vector<string> m = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
