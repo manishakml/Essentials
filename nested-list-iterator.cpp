@@ -67,6 +67,7 @@ public:
  */
  
  /* Tested.
+  * Implementing recursive version or remove will be difficult in c++.
   * Time complexity: O(N) where N is the total number of integer elements.
   * Space complexity: O(N)
   */
