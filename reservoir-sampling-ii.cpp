@@ -4,7 +4,7 @@
  
  class Sampling {
  int k;
- int total = 0;
+ int count = 0;
  Sampling(int k){
   vector<int> A(k,-1);
   this->k = k;
