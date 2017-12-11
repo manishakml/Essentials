@@ -26,7 +26,7 @@ double my_sqrt(double n) {
         //we need a precision so that we dont have infinite loops, so the error margin is defined by this constant. Lower the precision value, higher the accuracy
         if(m <= ((n+precision)/m) && m >= ((n-precision)/m)){
             return m;
-        } else if (m < n/m) {
+        } else if (m < (n-precision)/m) {
             l = m;
         } else {
             r = m;
