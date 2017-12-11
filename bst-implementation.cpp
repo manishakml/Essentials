@@ -89,6 +89,20 @@ Node* delete(Node* root, int key) {
   return root;
 }
 
+//kth smallest - use inorder k times
+int helper(TreeNode* root, int &k){
+        if(!root) return INT_MIN;
+        int val = helper(root->left,k);
+        if(k == 0) return val;
+        k--;
+        if(k == 0) return root->val;
+        return helper(root->right,k);
+    }
+    
+    int kthSmallest(TreeNode* root, int k) {
+        return helper(root,k);
+    }
+
 /* Not tested.
  * Time complexity: O(h) where h is height of tree. (For insert,search and delete). Height is log(no_of_nodes). In worst case, the tree can be skewed and complexity is O(n) where n is the number of nodes in the tree.
  * Space complexity: O(h) for recursion. O(1) otherwise.
