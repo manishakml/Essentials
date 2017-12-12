@@ -15,7 +15,7 @@ int first(vector<int>& A, int k) {
     m = l + ((r-l)>>1);
     if((m==0||A[m-1]<k) && A[m]==k){
       return m;
-    } else if(A[m] < k) {
+    } else if(A[m] < k) { // we are looking for the first occurence; so, we have to be specific about l
       l = m+1;
     } else {
       r = m-1;
@@ -30,7 +30,7 @@ int last(vector<int>& A, int k) {
     m = l + ((r-l)>>1);
     if((m==n-1||A[m+1]>k) && A[m]==k){
       return m;
-    } else if(A[m] > k) {
+    } else if(A[m] > k) { //we are looking for last occuenrece; so be specific about r
       r = m-1;
     } else {
       l = m+1;
