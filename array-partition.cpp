@@ -4,25 +4,28 @@
 using namespace std;
 
 bool helper(const vector<int> &A, int n, int idx, int target, vector<vector<int>> &B){
+    //if at the end of the array
     if(idx == n){
         for(int i = 0; i < B.size(); i++) {
+            //if some bucket has not reached target or if all elements are over and distributed correctly to <k buckets,i.e some bucket is empty
             if(B[i][0] != target || B[i][1] <= 0) {
                 return false;
             }
         }
         return true;
     }
-
+//this iteration's element
     int val = A[idx];
     for(int i = 0; i < B.size(); i++){
+        //add the cur val to the cur bucket
         B[i][0] += val;
+        //increase the number of elem in the cur bucket
         B[i][1] += 1;
-        cout << "A:"<<i << " " << B[i][0] << " " << B[i][1] << endl;
         if(helper(A,n,idx+1,target,B)) return true;
+        //undo addition and try adding them into the next bucket, if any
         B[i][0] -= val;
         B[i][1] -= 1;
-        cout << "B:"<<i << " " << B[i][0] << " " << B[i][1] << endl;
-    }
+    } //if all buckets are done, return false in this iteration and retract to previous iteration
     return false;
 }
 
@@ -34,8 +37,9 @@ bool partition(const vector<int> &A, const int k) {
     for(int i = 0; i < n; i++) {
         sum += A[i];
     }
-
+//sum has to be evenly divisible by buckets for it to fit in k buckets evenly
     if(sum % k) return false;
+    //B[i][0] keeps the val/sum at ith bucket. B[i][1] keeps the number of elems that contributed to the val/sum in ith bucket
     vector<vector<int>> B(k, vector<int>(2,0));
     return helper(A,n,0,sum/k,B);
 }
