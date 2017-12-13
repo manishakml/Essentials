@@ -23,7 +23,7 @@ Node *compact(Node *root, int n){
         Node *tmp = q1.front();
         q1.pop();
         for(const Node* c : tmp->children){
-            q.push(c);
+            q1.push(c);
         }
         tmp->children.clear();
         //from 2nd node onwards...
