@@ -55,7 +55,7 @@ int search(vector<int>& nums, int target) {
             m = l + ((r-l)>>1);
             int realmid = (m+min)%n;
             if(nums[realmid] == target) return realmid;
-                //move l further such that realmid will also move further; l and m have to be incremented or decremented by 1 coz in case we are at 1 element and l and r are pointing at it, since the loop is l <= r, it will go on infinitely
+                //move l further such that realmid will also move further; l and m have to be incremented or decremented by 1 coz in case we are at 1 element and l and r are pointing at it, since the loop is l <= r, it will go on infinitely. l has to be <= r; otherwise it wont work for 1 element.
             else if(nums[realmid] < target) l = m+1;
                 //move r behind such that realmid will also move behind
             else r = m-1;
