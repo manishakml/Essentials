@@ -40,9 +40,11 @@ int search(vector<int>& nums, int target) {
 int search(vector<int>& nums, int target) {
         int n = nums.size(), l = 0, r = n-1, m;
         //find min
-        while(l < r) {
-            m = l + ((r-l)>>1);
+        // l < r since l will move in increments of 1 and reach r if r is the minimum Once reached, it wont process anymore. <= will make it reach r and process more. Now, l,r,m are the same. The flow goes to else condition and l never moves, resulting in infinite loop.
+        //in general, whenever we don't return m explicitly, l < r is the condition    
+        m = l + ((r-l)>>1);
             if(nums[m] > nums[r]) l = m+1;
+                //r = m and not m-1 since m could be a potential minimum which we haven't evaluated
             else r = m;
         }
         
