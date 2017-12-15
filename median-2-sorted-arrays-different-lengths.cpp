@@ -82,7 +82,7 @@ public:
     }
 };
 
-//Understandable approach - refer to leetcode discuss for explanation
+//Understandable approach - refer to leetcode discuss for explanation - https://discuss.leetcode.com/topic/4996/share-my-o-log-min-m-n-solution-with-explanation
 double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
         int m = nums1.size();
         int n = nums2.size();
