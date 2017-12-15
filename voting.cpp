@@ -39,7 +39,7 @@ using namespace std;
     auto cmp = [](pair<int,int> a, pair<int,int> b){return a.first < b.first;};
     set<pair<int,int>,decltype(cmp)> count(cmp);
 
-    //m is a mapping between candidate_idx and the corresponding set element
+    //m is a mapping between candidate_idx and the pair<votes, candidate_idx> that we insert into the count
     unordered_map<int,<pair<int,int> > map1;
 
     //keep the discarded candidates because they got the lowest number of votes
