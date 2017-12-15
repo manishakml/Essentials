@@ -36,11 +36,11 @@ using namespace std;
     //marker denotes where each ballot's processing should start. Initially, it is 0 idx.
     vector<int> marker(n,0);
 //count stores pair<votes,candidate_idx> in ascending order of votes. If 2 candidates have same votes, they are ranked acc. to their candidate_idx. Uniqueness is guaranteed - only if p.first and p.second are the same, will it be deduped.
-    bool cmp = [](pair<int,int> a, pair<int,int> b){return a.first < b.first;};
+    auto cmp = [](pair<int,int> a, pair<int,int> b){return a.first < b.first;};
     set<pair<int,int>,decltype(cmp)> count(cmp);
 
     //m is a mapping between candidate_idx and the corresponding set element
-    unordered_map<int,set<pair<int,int> >::iterator> map1;
+    unordered_map<int,<pair<int,int> > map1;
 
     //keep the discarded candidates because they got the lowest number of votes
     unordered_set<int> discard;
@@ -62,24 +62,27 @@ using namespace std;
         //if that candidate has been found before, increase his count
         if(map1.count(k)) {
             //get the iterator dereferenced. Then increment the pair's first element; votes. We have to erase the existing set element and insert the new set element since its val has changed. So, update map as well.
-            pair<int,int> p = *(map1[k]);
-            count.erase(map1[k]);
+            pair<int,int> p = map1[k];
+            count.erase(p);
             p.first++;
-            map1[k] = (count.insert(p)).first;
+            count.insert(p)
+            map1[k] = p; 
         } else {    //it is a new candidate; insert into set and update map
-            map1[k] = (count.insert(make_pair(1,k))).first;
+            auto p = make_pair(1,k);
+            count.insert(p);
+            map1[k] = p;
         }
     }
 //if the highest-voted candidate has gained > half the ballots, he wins.
-    if((*(count.end())).first > n/2){
-        return (*(count.end())).second;
+    if((*(count.rbegin())).first > n/2){
+        return (*(count.rbegin())).second;
     }
 
     //to keep track of min votes; every iteration has a unique minimum
     int min_votes = INT_MAX;
 
     //if nobody won majority, we discard the candidate(s) with lowest number of votes
-    for(auto it = count.begin(); it != count.end(); it++){
+    for(auto it = count.begin(); it != count.end();){
         //compute the new minimum; since set is sorted, this will happen only once.
         if(((*it).first) < min_votes) {
             min_votes = (*it).first;
@@ -87,8 +90,8 @@ using namespace std;
         //discard all the candidates with the new minimum and remove them from count and map
         if((*it).first == min_votes){
             discard.insert((*it).second);
-            map1.erase((*it).second);
-            count.erase(it);
+            map1.erase(it->second);
+            it = count.erase(it); //erase will invalidate it; so when used in a for loop, be careful to assign it here
         } else if((*it).first > min_votes) {
             break;
         }
@@ -110,7 +113,7 @@ int main(){
                             {8,2,3,6,5,4,7,1},
                             {3,6,7,4,5,1,2,8} };
     vector<int> c = {1,2,3,4,5,6,7,8};
-    cout << winner(b,c);
+    cout << winner(b,c) << endl;
     return 1;
 }
 
