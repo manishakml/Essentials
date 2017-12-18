@@ -53,7 +53,7 @@
 
 /* Tested.
  * Note: Refer to: https://discuss.leetcode.com/topic/40924/java-recursive-o-logn-space-and-iterative-solutions-o-1-space-with-explanation-and-figure. Refer to solutions tab for the pictures.
- * Note: Follow-up: to detect if all right nodes are leaf/empty: Iterate through the left nodes, each time checking that right node 1)either does not exist or 2) has no children.
+ * Note: Follow-up: to detect if all right nodes are leaf/empty: Iterate through the left nodes, each time checking that right node 1)either does not exist or 2) exists && has a sibling && has no children.
  * Time complexity: O(n) where n is the number of nodes.
  * Space complexity: O(n) for the call stack if recursive, O(1) otherwise.
  */
