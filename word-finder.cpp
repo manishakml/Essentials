@@ -81,7 +81,7 @@ int main(){
 
 /* Not tested thoroughly.
  * Time complexity: If the height of the tree (longest word in the dict.) is k, the length of char list is m and number of words in the dict. is n, we have to calc. number of nodes in the trie. n_nodes in a full BT of ht h is (2^h)-1. n_nodes = 2^0 + 2^1...2^(h-1). Multiple each side by 2; add/subtract 1 on RHS. 2*n_nodes = (2^1 +... 2^h +1)-1 = n_nodes + 2^h -1. Therefore, n_nodes = (2^h)-1.
-   The ht. of the trie is 26^(k) - 1 if each node has 26 children and ht. of longest word is k. But it might iterate to the minimum of k or size of the char array m. Hence, (26^min(k,m)) - 1. But max children will be number of unique chars in char list = m-key. Therefore, (m-key^min(k,m)) + 1.
+   The n_nodes of the trie is 26^(k) - 1 if each node has 26 children and ht. of longest word is k. But it might iterate to the minimum of k or size of the char array m. Hence, (26^min(k,m)) - 1. But max children will be number of unique chars in char list = m-key. Therefore, (m-key^min(k,m)) + 1.
  * Space complexity: O(min(n_nodes, m-key)).
  */
  
