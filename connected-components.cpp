@@ -53,5 +53,5 @@
  
  /* Tested.
   * Time complexity: O(n) since it visits each node only once.
-  * Space complexity: O(n)
+  * Space complexity: O(max(n,2m))
   */
