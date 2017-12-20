@@ -50,8 +50,8 @@ public:
 
     vector<T> getK(){
         vector<T> res;
-        for(int i = 0; i < s.size(); i++) {
-            res.push_back(s[i]);
+        for(auto i = s.begin(); i != s.end(); i++) {
+            res.push_back(*i);
         }
         return res;
     }
