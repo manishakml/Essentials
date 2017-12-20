@@ -1,18 +1,25 @@
 /* Given 2 sorted linked lists, find the union and intersection of them.*/
 
-//Union is same as merge-2-linked-lists. Union will include duplicates
-//To avoid duplicates, use the following to the result list : O(n)
-ListNode* deleteDuplicates(ListNode* head) {
-        ListNode* cur = head;
-        while(cur && cur->next) {
-            if(cur->val == cur->next->val){
-                cur->next = cur->next->next;
-            } else {
-                cur = cur->next;
-            }
+//You cannot use merge logic and then apply dedup on it. Reason: If A has duplicate nodes in itself, union should have the duplicate nodes.
+//Combining dedup in merge logic, union can be written as follows
+List* union(List *a, List *b){
+        List *h = NULL, *t = NULL;
+        while(a && b){
+                //store a and b vals
+                int A = a->val;
+                int B = b->val;
+                //if they are equal, we have to merge only one, but move both. From our logic below, if they are equal b is merged and moved. So, a has t be moved explicitly.
+                if(A == B) a = a->next;
+                a_n_a(h,t,A<B?a:b);
         }
-        return head;
- }
+        if(a){
+                a_n(h,t,a);
+        }
+        if(b){
+                a_n(h,t,b);
+        }
+        return h;
+}
 
 //Intersection. If l1 = {1,2,3,4,5}, l2 = {2,2,4,6}, intersection has {2,4} and not {2,2,4}. It is not clear if this is the intended result.
 void a_n_a(List *&h, List *&t, List *&l1, List *&l2){
