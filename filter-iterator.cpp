@@ -35,9 +35,7 @@ class filterIterator extends Iterator {
             }
             return result;
         }
-        //remove() cannot be safely implemented because next() returns an elemtn but progresses towards the next e
-ligible element. So, calling remove() using underlying it.remove() will cause some other further element to be rem
-oved and not the intended one.
+        //remove() cannot be safely implemented because next() returns an elemtn but progresses towards the next eligible element. So, calling remove() using underlying it.remove() will cause some other further element to be removed and not the intended one.
 };
 
 /* Not tested.
