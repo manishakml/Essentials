@@ -44,18 +44,17 @@ int knight(int n, Point s, Point e){
         unordered_set<Point,decltype(cmp)> temp(cmp);
 
         for(auto it = ph->begin(); it != ph->end(); it++){
-            if(discard.find(*it) != discard.end()) continue;
             Point t = *it;
             if(pt->find(t) != pt->end()) {
                 return c;
             }
+            discard.insert(*it);
             for(int k = 0; k < 8; k++){
                 if(isSafe(t,X,Y,k,n,discard)){
                     Point p;
                     p.x = t.x+X[k];
                     p.y = t.y+Y[k];
                     temp.insert(p);
-                    discard.insert(p);
                 }
             }
         }
@@ -72,6 +71,75 @@ int main(){
     e.x = 1; e.y = 1;
     cout << knight(n,s,e);
     return 1;
+}
+
+//with queue, returning count
+int knight(int n , Point s, Point e){
+    queue<Point> q;
+    q.push(s);
+    int c = 0;
+    unordered_set<Point> discard;
+    while(!q.empty()){
+        int sz = q.size();
+        for(int i = 0; i < sz; i++) {
+            Point t = q.front();
+            q.pop();
+            if(t == e){
+                return c;
+            }
+            discard.insert(t);
+            for(int k = 0; k < 8; k++){
+                if(isSafe(t,X,Y,k,n,discard)){
+                    Point p;
+                    p.x = t.x+X[k];
+                    p.y = t.y+Y[k];
+                    q.push(p);
+                }
+            }
+        }
+        c++;
+    }
+    return c;
+}
+
+void populate(vector<Point> res, pair<Point, Point> t) {
+    while(t.first != sentinal){
+        res.push_back(t.second);
+        t = t.first;
+    }
+}
+//with queue, returning path
+vector<Point> knight(int n , Point s, Point e){
+    vector<Point> res;
+    queue<pair<Point, Point>> q;
+    Point sentinel;
+    sentinel.x = -1;
+    sentinel.y = -1;
+    q.push(make_pair(sentinel,s));
+    int c = 0;
+    unordered_set<Point> discard;
+    while(!q.empty()){
+        int sz = q.size();
+        for(int i = 0; i < sz; i++) {
+            pair<Point, Point> t = q.front();
+            q.pop();
+            if(t.second == e){
+                populate(res,t,sentinel);
+                return res;
+            }
+            discard.insert(t.second);
+            for(int k = 0; k < 8; k++){
+                if(isSafe(t.second,X,Y,k,n,discard)){
+                    Point p;
+                    p.x = t.second.x+X[k];
+                    p.y = t.second.y+Y[k];
+                    q.push(make_pair(t,p));
+                }
+            }
+        }
+        c++;
+    }
+    return c;
 }
 
 /* Not tested - giving set-Point related errors.
