@@ -58,6 +58,33 @@ public:
     }
 };
 
+//approach 2
+vector<int> A;
+unordered_map<int,unordered_set<int>> m;
+
+bool insert(int a){
+ A.push_back(a);
+ m[a].insert(A.size()-1);
+ if(m[].size() > 1) return false;
+ return true;
+}
+
+bool remove(int a){
+ if(!m.count(a)) return false;
+ a_idx = m[a]->begin();
+ m[A.size()-1].erase(A.size()-1));
+ m[A.size()-1].insert(a_idx);
+ A[a_idx] = A[A.size()-1];
+ A.pop_back();
+ m[a].erase(m[a]->begin());
+ return true;
+}
+ 
+int getRandom(){
+ int r = rand()%A.size();
+ //remove(A[r]);
+ return A[r];
+}
 /**
  * Your RandomizedCollection object will be instantiated and called as such:
  * RandomizedCollection obj = new RandomizedCollection();
