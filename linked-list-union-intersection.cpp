@@ -35,6 +35,15 @@ List *intersection(List *l1, List *l2) {
         if(l1 && l2 && l1->val < l2->val) l1 = l1->next;
         if(l1 && l2 && l2->val < l1->val) l2 = l2->next;
         if(l1 && l2 && l1->val == l2->val) a_n_a(h,t,l1,l2);
+            
+            /*alternative - easier code
+            if(l1->val < l2->val) {
+                    l1 = l1->next;
+            }else if(l2->val < l1-val){
+                    l2 = l2->next;
+            } else {
+                a_n_a(h,t,l1,l2);
+            }*/
     }
     t->next = NULL;
     return h;
