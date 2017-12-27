@@ -33,7 +33,7 @@ A[slot] &= !(1U << idx);
  * This compresses space.
  */
  
- /* In order to return over set bits */
+ /* In order to iterate over set bits and return them */
  vector<int> setbits(){
  vector<int> res;
  for(int slot = 0; slot < A.size(); slot++){  //replace with for(const pair<int,uint32> &p : m) for map 
