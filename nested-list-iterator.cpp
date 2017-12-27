@@ -60,6 +60,46 @@ public:
     }
 };
 
+//approach 2 - using iterator. In approach 1, we flatten the list in the constructor. Suppose the list is very long, we want only 2 elements, we do not need to flatten it entirely in the constructor.
+class NestedIterator {
+    stack<vector<NestedInteger>::iterator> s,e;
+public:
+    NestedIterator(vector<NestedInteger> &nestedList) {
+        s.push(nestedList.begin());
+        e.push(nestedList.end());
+    }
+
+    int next() {
+        if(hasNext()){
+        if(!s.empty()) {
+            vector<NestedInteger>::iterator it = s.top();
+            int res = it->getInteger();
+            s.pop();
+            s.push(it+1);
+            return res;
+        }
+        }
+    }
+
+    bool hasNext() {
+        while(!s.empty()) {
+            vector<NestedInteger>::iterator it = s.top();
+            if(it == e.top()) {
+                s.pop();
+                e.pop();
+            } else if(it->isInteger()){
+                return true;
+            } else {
+                s.pop();
+                s.push(it + 1);
+                s.push(it->getList().begin());
+                e.push(it->getList().end());
+            }
+        }
+        return false;
+    }
+};
+
 /**
  * Your NestedIterator object will be instantiated and called as such:
  * NestedIterator i(nestedList);
