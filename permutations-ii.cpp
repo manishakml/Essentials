@@ -83,6 +83,9 @@ void helper(vector<int> &nums, vector<vector<int>> &res, vector<int> &ans, vecto
     }
     
     /* Tested.
+     * Note: Approach 2 sorts the array. After sorting, the backtracking approach follows the order of indices, (0,1,2),(0,2,1),(1,0,2),(1,2,0) etc.
+             Hence, the total number of combinations is n! (1st index has n choices, second has n-1 etc.). So, time complexity is O(n!).
+             Reason we sort: If we have (1,1). Let's say idx = 0,1. Once the combination (0,1) is processed, the algorithm tries to put the combination (1,0). But we have to dedup. So, while processing (1,0), after (1, is put, we see that idx 1 elem == idx 0 elem and idx0 has not been used. This means in some prev iteration, idx0 was used and this combination succeeded. Now, it is a duplicate.
      * Note: Parallization/multithreading is easy for the 'next permutation' approach. The concept being: If I have 200k permutations to generate and have 2 cores, I find out 100kth permutation by kth permutation algorithm and can parallely process from there since each permutation is only dependent on the previous one.
      * Time complexity: O(n^n) where n is the number of elements.
      * Space complexity: O(1)
