@@ -51,7 +51,8 @@ void inorder(Node *root) {
         while(!s.empty()) {
                 Node* t = s.top();
                 s.pop();
-                m[t] = k++;
+                m[t] = k;
+                k += (to_string(t->val)).size();
                 if(t->right) {
                         Node *cur = t->right;
                         while(cur){
@@ -71,14 +72,12 @@ void inorder(Node *root) {
                 int s = q.size();
                 for(int i = 0; i < s; i++) {
                         Node* t = q.front();
-                        q.pop();
-                        int sp = m[t]-prev_sp;
-                        while(sp--){
-                                cout << ' ';
-                                prev_sp++;
+                        q.pop();                       
+                        while(prev_sp++ < m[t]) {
+                         cout << ' ';
                         }
                         cout << t->val;
-                        prev_sp++;
+                        prev_sp += (to_string(t->val)).size();
                         if(t->left) q.push(t->left);
                         if(t->right) q.push(t->right);
                 }
