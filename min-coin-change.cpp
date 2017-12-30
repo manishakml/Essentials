@@ -24,7 +24,8 @@
         
         for(int i = 1; i <= amount; i++){
             for(int j = 0; j < coins.size(); j++) {
-                if(coins[j] <= i && dp[i-coins[j]] != INT_MAX && dp[i]>dp[i-coins[j]] +1) {  //pay heed to overflow here
+                if(coins[j] > i) continue;
+                if(dp[i] - 1 > dp[i-coins[j]]) {  //pay heed to overflow here; understand how INT_MAX field is handled
                     dp[i] = dp[i-coins[j]] + 1;
                 }
             }
