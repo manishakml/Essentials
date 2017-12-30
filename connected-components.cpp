@@ -50,6 +50,50 @@
    }
    return c;
  }
+
+/* If asked in the form of email id mappings - Given, a mapping of alias and email ids, group the same people together.
+{{Ed, {ed@g,e@g}}, {Ed S, ed@g, es@g}, {EdS es@g, eds@g}, {man, man@g}}}*/
+
+void dfs(vector<pair<string,vector<string>>> A, int s, int n, vector<string> &ans, unordered_map<string,vector<int>> &m, vector<bool> &vis){
+     vis[s] = true;
+     pair<string, vector<string>> p = A[s];
+     ans.push_back(p.first);
+     
+     //for all emails of that object
+     for(string e: p.second){
+          //for each idx associated with that email
+          for(int i = 0; i < m[e].size();  i++){
+               if(!vis[i]){
+                    dfs(A,i,n,ans,m,vis);
+               }
+          }
+     }
+}
+
+vector<vector<string>> group(vector<pair<string,vector<string>>> &A){
+     int n = A.size();
+     unordered_map<string, vector<int>> m; //map of email id and idxs
+     //for each email id, create a list of objects associated with it
+     for(int i = 0; i < A.size(); i++){
+          for(string e : A[i].second) {
+               m[e].push_back(i);
+          }
+     }
+     int c = 0;
+     vector<vector<string>> res;
+     vector<bool> visited(n);
+     //for all objects
+     for(int i = 0; i < n; i++){
+          if(!visited[i]){
+               c++;
+               vector<string> ans;
+               dfs(A,i,n,ans,m,visited);
+               res.push_back(ans);
+               ans.clear();
+          }
+     }
+     return res;
+}
  
  /* Tested.
   * Time complexity: O(n) since it visits each node only once.
