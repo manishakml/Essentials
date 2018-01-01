@@ -61,6 +61,6 @@
  
  
  /* Tested.
-  * Time complexity : factorial (specifically, (n/i)!) - to be verified.
+  * Time complexity : plotted graph seems close to O(sqrt(n)). However, that needs to be derived. O(n^n) perhaps.
   * Space complexity: log n - to be verified
   */
