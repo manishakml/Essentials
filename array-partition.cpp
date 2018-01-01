@@ -53,6 +53,6 @@ int main() {
 
 /* Not tested thoroughly.
  * Approach above is backtracking. Run the program to see how it works.
- * Time complexity: O(kn!) - to be verified.
- * Space complexity: O(kn) - to be verified.
+ * Time complexity: O(k^n) - Draw the recursion tree. Looks like a binary tree with k children since each element tries to fit in all of the k buckets.
+ * Space complexity: O(max(k,n))
  */
