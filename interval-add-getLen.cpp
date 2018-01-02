@@ -31,51 +31,37 @@ int main() {
         return 1;
 }
 
-// Approach 2: Use a sorted data structure for storage. Merge. Get length. Merge can be part of add or get based on the use-case.
-class Solution {
-priority_queue<pair<int,int>, vector<pair<int,int> >, greater<pair<int,int> > > min_heap;
-vector<pair<int,int> > res;
-void print(vector<pair<int,int> > A) {
-        for(int i = 0; i < A.size(); i++) {
-                cout << A[i].first << "," << A[i].second << endl;
-        }
+//Approach 2 - cannot use min_heap because, in order to merge, we empty the min_heap. std::set solves this. Consider the sequence add(),add(),get(),add(),get(). The last get() should give the total length considering all previous adds. But in approach 2, we will reset after the first get() since the min_heap will be empty during its merge().
+set<pair<int,int>> s;
+void add(int f, int t) {
+        s.push(make_pair(f,t));
 }
-void merge() {
-        if(min_heap.empty()) return;
-        res.push_back(min_heap.top());
-        min_heap.pop();
+void merge(vector<pair<int,int>> &res) {
+        if(s.empty()) return;
+        auto it = s.begin();
+        res.push_back(*it);
+        it++;
 
-        while(!min_heap.empty()) {
-                pair<int,int> p = min_heap.top();
-                min_heap.pop();
+        for(; it != s.end(); it++){
+                pair<int,int> p = *it;
                 if(p.first <= res.back().second){
                         res.back().second = max(res.back().second, p.second);
                 } else {
                         res.push_back(p);
                 }
-
         }
 }
-public:
 int get() {
-        merge();
+        vector<pair<int,int>> res;
+        merge(res);
         int len = 0;
         for(int i = 0; i < res.size(); i++) {
                 len += res[i].second - res[i].first;
         }
         return len;
 }
-void add(int f, int t) {
-        min_heap.push(make_pair(f,t));
-        //merge();
-}
-};
-int main() {
-        Solution s;
-        s.add(1,100000);
-        cout << s.get();
-        return 1;
-}
+//Note: If we add merge() in add() instead of get(), we have to keep res vector global.
+
 
 /* Not tested thoroughly.
  * Have timed on my machine using $time ./a.out for both approaches.
