@@ -145,6 +145,7 @@ Node *des(istream& is) {
 }
  
  /* Tested.
+  * Note: What if thenode values are strings and contain ' ' or '#'. In that case, parse the value, if there are spaces, double them. If there are #, convert them to 2 hashes and so on. When you deserialize, parse it back to the original.
   * Time complexity: O(n)
   * Space complexity: O(n)
   */
