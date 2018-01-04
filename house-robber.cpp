@@ -18,6 +18,7 @@ int rob(vector<int>& A) {
 }
 
 /* Tested.
+ * Note: This will work for negative numbers as well. Since we take max of inc and exc, negative will get excluded.
  * Time complexity: O(n) where n is the number of houses.
  * Space complexity: O(1)
  */
