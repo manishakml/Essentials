@@ -25,6 +25,7 @@
  }
  
  /* Not tested.
+  * Note: Chance of the incoming element replacing a slot = k/n (out of n random slots, there are k slots that can be replaced). Similarly, consider an elm that went into the array in last round. So, it replaced an element with chance k/n-1 (since there were n-1 elem then). The chance that it won't be replaced this round, is 1-(1/n) since there are 1/n slot options for the current elem.. So, the chance of the prev elem in the arr gets updated to chance of it having entered the arr * chance of it not being replaced this round = k/(n-1) * (1-(1/n)) = k/n. So, it's probability got updated from k/n-1 to k/n. Also, the incoming elem has the probability of k/n to enter the array (the aim was to establish them being equal).
   * Time complexity: O(1)
   * Space complexity: O(k) if the result array is counted as extra space
   */
