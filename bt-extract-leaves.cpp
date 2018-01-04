@@ -25,6 +25,24 @@
     helper(root, res);
     return res;
  }
+
+//approach for n-ary tree with getChildren() and return expected as vector<unordered_set>
+int helper(Node *root, vector<unordered_set<int>>& res) {
+    if(!root) return 0;
+    int level = 0;
+    for(auto c : root->getChildren()){
+     level = max(level, helper(c,res));
+    }
+    if(level == (int)res.size()) res.push_back(unordered_set<int>());
+    res[level].push_back(root->val);
+    return level+1;
+ }
+ 
+ vector<vector<int>> collectLeaves(Node *root) {
+    vector<unordered_set<int>> res;
+    helper(root, res);
+    return res;
+ }
  
  /* Tested
   * Time complexity: O(n) where n is the number of nodes in the tree.
