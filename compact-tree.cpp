@@ -32,6 +32,7 @@ Node *compact(Node *root, int n){
             if(q2.front()->children.size() == n){
                 q2.pop();
             }
+            if(q.empty()) return NULL;  //the cur node has no new parent. Consider n = 0 and 2 nodes. When the 2nd node is processed here, q is popped, now the queue is empty and we have not identified a new parent for the cur node.
             //add it as a child to the previously added node if that has < n children
             addChild(q2.front(), tmp);
         }
