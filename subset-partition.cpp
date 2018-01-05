@@ -13,6 +13,6 @@ int subset_count(vector<int> &A, int k){
 
 /* Not tested.
  * Note: (1,2,3,4) and target 4: 
- * Time complexity: O(n!)
+ * Time complexity: Exponential
  * Space complexity: O(n)
  */
