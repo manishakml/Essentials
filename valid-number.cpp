@@ -45,6 +45,59 @@ public:
     }
 };
 
+//Approach 2 - simpler
+
+class Solution {
+public:
+    bool isNumber(string s) {
+        int r = s.length()-1;
+        
+        while(r >= 0 && s[r] == ' '){
+            r--;
+        }
+        if(r < 0) {
+            return false;
+        }
+        s.erase(s.begin()+r+1, s.end());
+        r = 0;
+        while(r < s.length() && s[r] == ' '){
+            r++;
+        }
+        if(r == s.length()) {
+            return false;
+        }
+        bool numberSeen = false;
+        bool eseen = false;
+        bool pointseen = false;
+        bool numberAftere = true;
+        for(int i = r; i < s.length(); i++) {
+            if(s[i] >= '0' && s[i] <= '9') {
+                numberSeen = true;
+                numberAftere = true;
+            } else if( s[i] == '.'){
+                if(pointseen || eseen) {
+                    return false;
+                }
+                pointseen = true;
+            } else if(s[i] == 'e'){
+                if(eseen || !numberSeen) {
+                    return false;
+                }
+                eseen = true;
+                numberAftere = false;
+            } else if( s[i] == '+' || s[i] == '-') {
+                cout << "MK";
+                if(i != 0 && s[i-1] != 'e') {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return numberSeen && numberAftere;
+    }
+};
+
 /* Tested.
  * Time complexity: O(n) where n is the number of elements in the string.
  * Space complexity: O(1)
