@@ -5,8 +5,10 @@
  class Sampling {
  int k;
  int count = 0;
+  vector<int> A;
  Sampling(int k){
-  vector<int> A(k,-1);
+  vector<int> B(k,-1);
+  A = B;
   this->k = k;
  }
  
