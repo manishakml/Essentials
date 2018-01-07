@@ -7,8 +7,7 @@
  int count = 0;
   vector<int> A;
  Sampling(int k){
-  vector<int> B(k,-1);
-  A = B;
+  A(k,-1);
   this->k = k;
  }
  
