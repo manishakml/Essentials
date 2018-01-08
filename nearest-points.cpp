@@ -77,7 +77,7 @@ vector<Point> nearest(Point c, int k){
 
 //Approach 2 with lambda expressions
 vector<Point> nearest(Point c, int k){
-    auto cmp = [c](Point a, Point b){return dis(a,c) < dis(b,c);};
+    auto cmp = [&c](Point a, Point b){return dis(a,c) < dis(b,c);};
     priority_queue<Point, vector<Point>, decltype(cmp)> max_heap(cmp);
     for(int i = 0; i < P.size(); i++) {
         Point p = P[i];
