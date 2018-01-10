@@ -8,7 +8,7 @@ using namespace std;
 //already given
 Node {
     int val;
-    vector<Node *children> children;
+    vector<Node *> children;
 };
 void addChild(Node *root, Node *child);
 
