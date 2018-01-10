@@ -26,7 +26,7 @@ struct myHash<string> {
 template<>
 struct myHash<int> {
     size_t hashFunc(const int &m){
-        return std::hash<int>{}(m);
+        return std::hash<int>()(m);
     }
 };
 
