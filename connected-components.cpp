@@ -38,6 +38,7 @@
     m[i] = {};
   }
   for(int i = 0; i < A.size(); i++) {
+       // you have to put both directions in. Assume you have (1,2) and (3,1). If you did not put (1,3) in, while processing node 1, we would have only marked 1 and 2 as visited. Then, we would process 3 in its turn since it was unvisited. This would lead to 2 components when in reality there is only one.
     m[A[i].first].push_back(A[i].second);
     m[A[i].second].push_back(A[i].first);
   }
