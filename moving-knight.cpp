@@ -111,17 +111,17 @@ void populate(vector<Point> res, pair<Point, Point> t) {
 //with queue, returning path
 vector<Point> knight(int n , Point s, Point e){
     vector<Point> res;
-    queue<pair<Point, Point>> q;
+    queue<pair<Point*, Point>> q;
     Point sentinel;
     sentinel.x = -1;
     sentinel.y = -1;
-    q.push(make_pair(sentinel,s));
+    q.push(make_pair(&sentinel,s));
     int c = 0;
     unordered_set<Point> discard;
     while(!q.empty()){
         int sz = q.size();
         for(int i = 0; i < sz; i++) {
-            pair<Point, Point> t = q.front();
+            pair<Point*, Point> t = q.front();
             q.pop();
             if(t.second == e){
                 populate(res,t,sentinel);
@@ -133,7 +133,7 @@ vector<Point> knight(int n , Point s, Point e){
                     Point p;
                     p.x = t.second.x+X[k];
                     p.y = t.second.y+Y[k];
-                    q.push(make_pair(t,p));
+                    q.push(make_pair(&t,p));
                 }
             }
         }
