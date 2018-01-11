@@ -110,7 +110,8 @@ void populate(vector<Point> res, Point t, unordered_map<Point,Point> &m) {
 }
 //with queue, returning path
 vector<Point> knight(int n , Point s, Point e){
-    unordered_map<Point, Point*> m;
+    auto cmp = [](Point a, Point b){return a.x == b.x && a.y == b.y;};
+    unordered_map<Point, Point*, decltype(cmp)> m(cmp);
     vector<Point> res;
     queue<Point> q;
     q.push(s);
