@@ -102,10 +102,10 @@ int knight(int n , Point s, Point e){
     return c;
 }
 
-void populate(vector<Point> res, pair<Point, Point> t) {
-    while(t.first != sentinal){
+void populate(vector<Point> res, pair<Point*, Point> t) {
+    while(t->first != sentinal){
         res.push_back(t.second);
-        t = t.first;
+        t = t->first;
     }
 }
 //with queue, returning path
