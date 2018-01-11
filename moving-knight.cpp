@@ -102,38 +102,38 @@ int knight(int n , Point s, Point e){
     return c;
 }
 
-void populate(vector<Point> res, pair<Point*, Point> t) {
-    while(t->first != sentinal){
-        res.push_back(t.second);
-        t = t->first;
+void populate(vector<Point> res, Point t, unordered_map<Point,Point> &m) {
+    while(m[t] != NULL){
+        res.push_back(t);
+        t = m[t];
     }
 }
 //with queue, returning path
 vector<Point> knight(int n , Point s, Point e){
+    unordered_map<Point, Point*> m;
     vector<Point> res;
-    queue<pair<Point*, Point>> q;
-    Point sentinel;
-    sentinel.x = -1;
-    sentinel.y = -1;
-    q.push(make_pair(&sentinel,s));
+    queue<Point> q;
+    q.push(s);
+    m[s] = NULL;
     int c = 0;
     unordered_set<Point> discard;
     while(!q.empty()){
         int sz = q.size();
         for(int i = 0; i < sz; i++) {
-            pair<Point*, Point> t = q.front();
+            Point t = q.front();
             q.pop();
-            if(t.second == e){
-                populate(res,t,sentinel);
+            if(t == e){
+                populate(res,t,m);
                 return res;
             }
             discard.insert(t.second);
             for(int k = 0; k < 8; k++){
-                if(isSafe(t.second,X,Y,k,n,discard)){
+                if(isSafe(t,X,Y,k,n,discard)){
                     Point p;
-                    p.x = t.second.x+X[k];
-                    p.y = t.second.y+Y[k];
-                    q.push(make_pair(&t,p));
+                    p.x = t.x+X[k];
+                    p.y = t.y+Y[k];
+                    q.push(p);
+                    m[p] = &t;
                 }
             }
         }
