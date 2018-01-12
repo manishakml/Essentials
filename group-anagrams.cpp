@@ -27,6 +27,6 @@
     }
     
     /* Tested.
-     * Time complexity: O(n*m) where n is the number of strings and m is the length of the string.
+     * Time complexity: O(n(mlogm)) where n is the number of strings and m is the length of the string.
      * Space complexity: O(n)
      */
