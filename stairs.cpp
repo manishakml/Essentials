@@ -37,6 +37,6 @@ public:
 
 /* Tested.
  * Time complexity: O(nk)
- * Space complexity: O(k)
+ * Space complexity: O(n)
  */
  
