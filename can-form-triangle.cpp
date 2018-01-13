@@ -26,6 +26,7 @@
 /* Not tested thoroughly.
  * Note: Once sorted, it is sufficient to check only one out of the 3 conditions.
  * Note: This method relies on the fact that A...A'...B...C'...C => If A,B,C form a triangle, then A'BC' form a triangle too.
+ * Note: Start with 3 pointers in the end (i:n-1,j:n-2,k:n-3). If they can form a triangle, no matter how much we move i and j, we cannot get a triangle coz vals are decreasing. The only solution is to move k as well. This means, i and j will have to shift as well. Extending this logic, if there has to be a triangle with any combination of segments, then there must be a triangle formed by the adjacent segments as well. This can be done from the beginning also.
  * Time complexity: O(nlogn) where n is the number of segments.
  * Space complexity: O(1)
  */
