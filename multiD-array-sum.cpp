@@ -28,6 +28,26 @@
   }
   return s;
  }
+
+//Easy recursive approach
+void helper(MultiDimensionalArray &A, vector<int> &d, int &sum, int idx, vector<int> &idx_arr){
+ if(idx == d.size()){
+  sum += A.get(idx_arr);
+ } else {
+  for(int i = 0; i < d[idx]; i++){
+   arr_idx.push_back(i);
+   helper(A,d,sum,idx+1,idx_arr);
+   arr_idx.pop_back();
+  }
+ }
+}
+
+int sum(MultiDimensionalArray &A, vector<int> &d){
+ int sum = 0;
+ vector<int> idx_arr;   //keep track of what indices to send to get();
+ helper(A, d, sum, 0, idx_arr);
+ return sum;
+}
  
  /* Not tested.
   * Note: Work with an example to understand that it is essentially like enumerating bits, how we move from 000 to 001 to 010 etc.
