@@ -5,43 +5,69 @@
  * Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless. 
  */
  
- #include<iostream>
- #include<string>
- #include<stringstream>
- using namespace std;
- 
- void serialize(TreeNode* root, ostringstream &os) {
+ /**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Codec {
+public:
+    void serialize(TreeNode* root, ostringstream &os) {
         if(!root) return;
         os << to_string(root->val) << " ";
         serialize(root->left,os);
         serialize(root->right,os);
     }
+    
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         ostringstream os;
         serialize(root,os);
         return os.str();
     }
-    
-    TreeNode* deserialize(istringstream &is, int lower, int upper) {
-        string val;
-        is >> val;
-        int v = stoi(val);
+
+    TreeNode* deserialize(vector<int> &values, int &pos, int lower, int upper) {
+        if(pos == values.size()) {
+         return nullptr;
+        }
+        int v = values[pos];
         if(v < lower || v > upper) return nullptr;
         TreeNode* root = new TreeNode(v);
-        root->left = deserialize(is,lower,root->val);
-        root->right = deserialize(is,root->val,upper);
+        pos++;
+        if(root->val != INT_MIN){
+         root->left = deserialize(values, pos, lower,root->val-1);
+        } else {
+         root->left = nullptr;
+        }
+        root->right = deserialize(values, pos ,root->val,upper);
         return root;
     }
-
+    
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
         istringstream is(data);
-        return deserialize(is, INT_MIN, INT_MAX);
+        vector<int> values;
+        string tmp;
+        while(is >> tmp) {
+         values.push_back(stoi(tmp));
+        }
+        int pos = 0;
+        return deserialize(values, pos, INT_MIN, INT_MAX);
     }
+};
+
+// Your Codec object will be instantiated and called as such:
+// Codec codec;
+// codec.deserialize(codec.serialize(root));
     
-    /* Not tested - giving stoi exception
+    /* Tested.
      * Note: This is similar to BT, except we do not need placeholders. We decode by position of the nodes by value-property of the BST.
+     * Note: pos is taken as reference. 
+     * Note: Don't forget to handle duplicates. Handle cases of val being int_min, int_max
      * Time complexity: O(n) where n is the number of nodes.
      * Space complexity: O(n) for the tmp string. O(1) otherwise.
      */
