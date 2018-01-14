@@ -30,3 +30,8 @@ bool isMatch(string s, string p) {
             return s.length()!=0 && (p[0] == s[0] || p[0] == '.') && isMatch(s.substr(1),p.substr(1));
         }
     }
+
+/* Tested.
+ * Time complexity: Exponential
+ * Space complexity: O(n)
+ */
