@@ -15,7 +15,7 @@ int min_idx(vector<char> &A, char target){
     while(l <= r) {
         int m = l + (r-l)/2;
         if(A[m] == target || (m != n-1 && A[m] < target && A[m+1] > target)){
-            return m+1;
+            return (m+1)%A.size();
         } else if(A[m] < target) {
             l = m+1;
         } else {
