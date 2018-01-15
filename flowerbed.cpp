@@ -1,5 +1,5 @@
 /* LC 605
- * Given a flowerbed represented as 1s and 0s, 1 indicates a planted flower and 0 indicates a free slot, and given a number k, is it possible to plant k flowers in the bed such that no 2 flowers are adjacent? */
+ * Given a flowerbed represented as 1s and 0s, 1 indicates a planted flower and 0 indicates a free slot, and given a number k, is it possible to plant k flowers in the bed such that no 2 flowers are adjacent?
  */
 class Solution {
 public:
