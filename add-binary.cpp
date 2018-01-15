@@ -23,3 +23,23 @@
   
   return c?'1'+res:res;
  }
+
+//approach 2
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        string res;
+        int i = a.size()-1, j = b.size()-1, carry = 0;
+        
+        while(i >=0 || j >=0 || carry == 1) {
+            int A = i >= 0? a[i]-'0' : 0;
+            int B = j >= 0? b[j]-'0' : 0;
+            int sum = A + B + carry;
+            res += (sum & 1) + '0';
+            carry = sum >> 1;
+            i--;j--;
+        }
+        reverse(res.begin(),res.end());
+        return res;
+    }
+};
