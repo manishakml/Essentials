@@ -41,7 +41,7 @@ List *intersection(List *l1, List *l2) {
                     l1 = l1->next;
             }else if(l2->val < l1-val){
                     l2 = l2->next;
-            } else {
+            } else {                    //(1,2,2,1) and (1,2). If we need the output as (2) and not (2,2), make a modification to this line: else if (!tail || (tail && tail->val != l1->val))
                 a_n_a(h,t,l1,l2);
             }*/
     }
