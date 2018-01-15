@@ -36,29 +36,26 @@ set<pair<int,int>> s;
 void add(int f, int t) {
         s.push(make_pair(f,t));
 }
-void merge(vector<pair<int,int>> &res) {
+int merge() {
         if(s.empty()) return;
         auto it = s.begin();
-        res.push_back(*it);
+        pair<int,int> res = *it;
         it++;
 
         for(; it != s.end(); it++){
                 pair<int,int> p = *it;
-                if(p.first <= res.back().second){
-                        res.back().second = max(res.back().second, p.second);
+                if(p.first <= res.second){
+                        res.second = max(res.second, p.second);
                 } else {
-                        res.push_back(p);
+                        len += res.second-res.first;
+                        res = p;
                 }
         }
-}
-int get() {
-        vector<pair<int,int>> res;
-        merge(res);
-        int len = 0;
-        for(int i = 0; i < res.size(); i++) {
-                len += res[i].second - res[i].first;
-        }
+        len += res.second - res.first;
         return len;
+}
+int get() {        
+        return merge(res);       
 }
 //Note: If we add merge() in add() instead of get(), we have to keep res vector global.
 
