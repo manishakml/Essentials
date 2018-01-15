@@ -8,6 +8,9 @@ List* union(List *a, List *b){
                 //store a and b vals
                 int A = a->val;
                 int B = b->val;
+                /* if (1,2,2,1) and (2,2) and output should be (1,2,1) and not (1,2,2,1) then use the below line:
+                if(A == B && (!tail || (tail && tail->val == A)) continue;
+                */
                 //if they are equal, we have to merge only one, but move both. From our logic below, if they are equal b is merged and moved. So, a has t be moved explicitly.
                 if(A == B) a = a->next;
                 a_n_a(h,t,A<B?a:b);
