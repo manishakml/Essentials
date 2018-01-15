@@ -25,10 +25,22 @@ int roman2int(string s) {
        //check invalid char
         if(m.find(s.back()) == m.end()) return 0;
         sum += m[s.back()];
-        
+        /*if we want to check invalid input like IIII, we need to keep track of count
+       int c = 1;
+       */
         for(int i = n-2; i >= 0; i--) {
                //check invalid char
             if(m.find(s[i]) == m.end()) return 0;
+               /*To keep track of illegal input like IIII
+               if(m[s[i]] == m[s[i+1]]) {
+                c++;
+                if(c == 4) {
+                        return 0;
+                }
+             } else {
+                c = 1;
+             }
+             */
             if(m[s[i]] >= m[s[i+1]]){
                 sum += m[s[i]];
             } else {
