@@ -98,6 +98,25 @@ vector<Point> nearest(Point c, int k){
     }
     return res;
 }
+
+//Compressed version of approach 2
+vector<Point> nearest(Point c, int k){
+    auto cmp = [&c](Point a, Point b){return dis(a,c) < dis(b,c);};
+    priority_queue<Point, vector<Point>, decltype(cmp)> max_heap(cmp);
+    for(int i = 0; i < P.size(); i++) {
+        Point p = P[i];
+        max_heap.push(p);
+        if(max_heap.size() > k) {
+            max_heap.pop();
+        }     
+    }
+    vector<Point> res;
+    while(!max_heap.empty()) {
+        res.push_back(max_heap.top());
+        max_heap.pop();
+    }
+    return res;
+}
 /* Not tested thoroughly.
  * Time complexity: Approach 1: O(nlogn) whre n is the number of points, Approach 2: O(nlogk) where k is the number of points requested.
  * Space complexity: Approach 1: O(n) for storing the points, none otherwise, Approach 2: O(n) for storing points, O(k) for priority_queue.
