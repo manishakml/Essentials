@@ -8,7 +8,7 @@ int min_idx(vector<char> &A, char target){
     int n = A.size();
     if( n == 0 ) return -1;
     if (target < A[0]) return 0;
-    if(target > A[n-1]) return 0;
+    if(target >= A[n-1]) return 0;
 
     int l = 0, r = n-1;
 
