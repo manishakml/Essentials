@@ -52,6 +52,17 @@ public:
     }
 };
 
+//if only one type of brackets is to be matched, we dont need stack
+{
+        int open = 0;
+        for(int i = 0; i < s.length(); i++){
+                if(s[i] == '(') open++;
+                else if(s[i] == ')') close++;
+                if(open < 0) return false;
+        }
+        return open == 0;
+}
+
 /* Tested.
  * Time complexity: O(n) where n is the length of the string.
  * Space complexity: O(n)
