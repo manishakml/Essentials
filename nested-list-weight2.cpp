@@ -92,6 +92,33 @@ int getD(const vector<NestedInteger> &A) {
         }
         return sum;
     }
+
+//reverse depth without extra depth calculation
+//if we have (a,(b,(c))). Reverse depthsum = 3a+2b+c. Depth sum = a+2b+3c. Reverse depthsum = 4(a+b+c) - (a+2b+3c) = (depth+1)(regular_sum) - depthSum.
+int rSum;
+int maxDepth;
+int helper3(vector<NI> &A, int d){
+        int dSum = 0;
+        for(int i = 0; i < A.size(); i++){
+                if(A[i].isInteger()){
+                        rSum += A[i].getInteger();
+                        dSum += A[i].getInteger() * d;
+                } else {
+                        dSum += helper3(A[i].getList(),d+1);
+                        maxDepth = max(maxDepth,d+1);
+                }
+        }
+        return dSum;
+}
+int reverseDepth(vector<NI> &A){
+        if(A.size() == 0) {
+                return 0;
+        }
+        rSum = 0;
+        maxLevel = 1;
+        int dSum = helper3(A,1);
+        return (maxDepth+1)*rSum - dSum;
+}
     
     /* Tested.
      * Time complexity: O(n) where n is the number of elements after decomposition.
