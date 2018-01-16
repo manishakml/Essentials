@@ -6,6 +6,9 @@ using namespace std;
 
 string toBinary(int n){
         string res = "";
+        if(n < 0) {
+                return res;
+        }
         while(n){
                 res += to_string(n%2);
                 n /= 2;
