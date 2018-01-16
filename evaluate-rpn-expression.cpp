@@ -42,6 +42,55 @@ int evaluate(vector<string>& A) {
   return s.top();
 }
        
+//alternate implementation handling more operators
+       bool isOperator(string c){
+        return c == "+" || c == "-" || c == "*" || c == "/";
+}
+
+int evaluate(int a, string op, int b){
+        switch(op){
+                case "+":return a+b;
+                case "-":return a-b;
+                case "*":return a*b;
+                case "<=":return a<=b;
+                case ">=":return a>=b;
+                case "/":if(b == 0) throw ArithmeticException;
+                         else return a/b;
+        }
+}
+int rpn(vector<string> s){
+        if(s.length() == 0){
+                throw InvalidArgumentException;
+        }
+        stack<int> st;
+        for(int i = 0; i < s.length(); i++){
+                if(!isOperator(s[i])){
+                        st.push(stoi(s[i]));
+                } else if (isOperator(s[i]) {
+                        if(st.empty()){
+                                throw InvalidArgumentException;
+                        }
+                        int b = st.top();
+                        st.pop();
+                        if(s[i] == "!"){
+                                st.push(fact(b));
+                                continue;
+                        }
+                        if(st.empty()) {
+                                throw InvalidArgumentException;;
+                        }
+                        int a = st.top();
+                        st.pop();
+                        st.push(evaluate(a,s[i],b);
+                }
+        }
+        if(st.empty() || st.size() > 1){
+                throw InvalidArgumentException;
+        } else {
+                return st.top();
+        }
+}
+       
 /* Tested.
  * Time complexity: O(n) where n is the number of tokens.
  * Space complexity: O(n).
