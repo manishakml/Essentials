@@ -34,9 +34,11 @@ template<class K, class V, class HashGen = myHash<K> >
 class HashTable {
 
     vector<list<Node<K,V> > > table;
+    vector<std::mutex> locks;
    public:
     HashTable(int size) {
         table.resize(size);
+        locks.resize(size);
     }
     ~HashTable() {}
     size_t mhash(K key) {
@@ -45,6 +47,7 @@ class HashTable {
 
     void put(K key, V val) {
         size_t idx = mhash(key);
+        std::unique_lock<std::mutex> mlock(locks[idx]);
         for(list::iterator i = table[idx].begin(); i != table[idx].end(); i++){
             if(i->key == key) {
                 i->val = val;
@@ -53,10 +56,12 @@ class HashTable {
         }
         Node<K,V> nn(key,val);
         table[idx].push_back(nn);
+        mlock.unlock();
     }
 
     bool get(K key, V &v) {
         size_t idx = mhash(key);
+        std::unique_lock<std::mutex> mlock(locks[idx]);
         for(int i = table[idx].begin(); i != table[idx].end(); i++){
             if(i->key == key) {
                 v =  i->val;
@@ -64,6 +69,7 @@ class HashTable {
             }
         }
         return false;
+        mlock.unlock();
     }
 };
 
