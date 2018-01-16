@@ -66,6 +66,7 @@ public:
 };
 
 /* Tested.
+ * Note: If O(1) test and O(n) add is ok, https://discuss.leetcode.com/topic/32449/trade-off-in-this-problem-should-be-considered. However, this takes O(n^2) space to store all sums.
  * Time complexity: O(n) where n is the number of elements in the list
  * Space complexity: O(n).
  */
