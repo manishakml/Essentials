@@ -29,6 +29,32 @@ bool perfect_sqr(int n) {
   return false;
 }
 
+//approach 2
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        if(num < 0) {
+            return false;
+        }
+    
+        int l = 0, r = num;
+        while(l <= r) {
+            int m = l + (r-l)/2;
+            long sqr = (long)m*m; //only this can go long. Also, observe the typecast
+            if(num == sqr) {
+                return true;
+            } else if(num > sqr){
+                l = m+1;
+            } else {
+                r = m-1;
+            }
+        }
+        return false;
+    }
+};
+
+
+
 /* Tested.
  * Time complexity: O(log n)
  * Space complexity: O(1)
