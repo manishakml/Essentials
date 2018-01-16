@@ -33,13 +33,10 @@ struct myHash<int> {
 template<class K, class V, class HashGen = myHash<K> >
 class HashTable {
 
-    vector<vector<Node<K,V> > > table;
+    vector<list<Node<K,V> > > table;
    public:
     HashTable(int size) {
-        for(int i = 0; i < size; i++) {
-            vector<Node<K,V> > v;
-            table.push_back(v);
-        }
+        table.resize(size);
     }
     ~HashTable() {}
     size_t mhash(K key) {
@@ -48,9 +45,9 @@ class HashTable {
 
     void put(K key, V val) {
         size_t idx = mhash(key);
-        for(int i = 0; i < table[idx].size(); i++){
-            if(table[idx][i].key == key) {
-                table[idx][i].val = val;
+        for(list::iterator i = table[idx].begin(); i != table[idx].end(); i++){
+            if(i->key == key) {
+                i->val = val;
                 return;
             }
         }
@@ -58,14 +55,15 @@ class HashTable {
         table[idx].push_back(nn);
     }
 
-    V get(K key) {
+    bool get(K key, V &v) {
         size_t idx = mhash(key);
-        for(int i = 0; i < table[idx].size(); i++){
-            if(table[idx][i].key == key) {
-                return table[idx][i].val;
+        for(int i = table[idx].begin(); i != table[idx].end(); i++){
+            if(i->key == key) {
+                v =  i->val;
+                return true;
             }
         }
-        return NULL;
+        return false;
     }
 };
 
