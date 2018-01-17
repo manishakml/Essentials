@@ -65,7 +65,7 @@ unordered_map<int,unordered_set<int>> m;
 bool insert(int a){
  A.push_back(a);
  m[a].insert(A.size()-1);
- if(m[].size() > 1) return false;
+ if(m[a].size() > 1) return false;
  return true;
 }
 
