@@ -21,12 +21,15 @@ public:
         if(!head) return nullptr;
         ListNode* newH = head, *tail = head;    
         int len = 1;
+        //find tail of the cur list and count len of the list
         while(tail->next){
             tail = tail->next;
             len++;
         }
+        //wrap the tail around
         tail->next = head;
         
+        //in the original list, the new head is sitting at len-k if the list has to be rotated k times. Tail is sitting before the head of the old list, so move it len-k to point to the new head.
         //tail is the len-kth element in the new list; so move tail len-k times to find the new head
         k = k%len;  //if len is smaller than k
         for(int i = 0; i < len-k; i++){
