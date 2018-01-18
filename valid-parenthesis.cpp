@@ -57,7 +57,7 @@ public:
         int open = 0;
         for(int i = 0; i < s.length(); i++){
                 if(s[i] == '(') open++;
-                else if(s[i] == ')') close++;
+                else if(s[i] == ')') open--;
                 if(open < 0) return false;
         }
         return open == 0;
