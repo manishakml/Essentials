@@ -32,6 +32,30 @@ void helper(vector<int>& candidates, int target, vector<vector<int>> &res, vecto
         helper(candidates,target,res,ans,0);
         return res;
     }
+
+//sorting does not give us an advantage
+class Solution {
+public:
+    void helper(vector<int> &candidates, int sum, vector<vector<int>> &res, vector<int> &ans, int remain, int start){
+        if(remain < 0) {
+            return;
+        } else if( remain == 0 ){
+            res.push_back(ans);
+        } else {
+            for(int i = start; i < candidates.size(); i++){
+                ans.push_back(candidates[i]);
+                helper(candidates,sum,res,ans,remain-candidates[i],i);
+                ans.pop_back();
+            }
+        }
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> res;
+        vector<int> ans;
+        helper(candidates,target,res,ans,target,0);
+        return res;
+    }
+};
     
     /* Tested.
      * Time complexity: Exponential
