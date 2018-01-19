@@ -219,7 +219,7 @@ public:
         return l.front();   //O1
     }
     int peekMax(){
-        return s.rbegin();  //O1
+        return s->rbegin();  //O1
     }
     void popmax(int &res){
         int t = s->rbegin();    //O1
