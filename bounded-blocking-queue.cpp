@@ -43,6 +43,7 @@ public:
         hasSpace.wait(mlock);
       }
       q.push_back(e);
+      curSz++;
       hasElement.notify_one();
       mlock.unlock();
     }
