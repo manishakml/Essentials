@@ -15,7 +15,7 @@ MSB(long s){ threshold_ = size;}
 bool process(Obj message){
     {std::unique_lock<std::mutex> mlock(mutex_);
     new_arrival.notify_all();
-    if(new_arrival.wait_for(mlock, threshold)){ //wait_until can be used here as well
+    if(new_arrival.wait_for(mlock, std::chrono::system_clock::now+threshold)){ //wait_until can be used here as well. This waits on mlock from now until now+threshold
       return true;
     }
     return false;
@@ -34,7 +34,7 @@ bool process(Obj message){
     {std::unique_lock<std::mutex> mlock(mutex_);
     for(auto condition: new_arrivals_){
       condition.notify_all();
-      if(condition.wait_for(mlock, threshold)){ //wait_until cna also be used
+      if(condition.wait_for(mlock, std::chrono::system_clock::now+threshold)){ //wait_until can also be used
         return true;
       }
     }
