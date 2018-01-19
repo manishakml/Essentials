@@ -1,4 +1,4 @@
-/* Given a stream of messages coming in the form of bursts (with gaps between them) and a threshold time, a burst is defined as the series of messages received before a gap = threshold. As soon as a burst occurs, identify the last message in it. */
+/* Given a stream of messages coming in the form of bursts (with gaps between them) and a threshold time, a burst is defined as the series of messages received before a gap = threshold. As soon as a burst occurs, identify the last message in it.
 char = message
 - = gap
 threshold = 3
@@ -15,7 +15,7 @@ MSB(long s){ threshold_ = size;}
 bool process(Obj message){
     {std::unique_lock<std::mutex> mlock(mutex_);
     new_arrival.notify_all();
-    if(new_arrival.wait_for(mlock, threshold)){
+    if(new_arrival.wait_for(mlock, threshold)){ //wait_until can be used here as well
       return true;
     }
     return false;
@@ -34,7 +34,7 @@ bool process(Obj message){
     {std::unique_lock<std::mutex> mlock(mutex_);
     for(auto condition: new_arrivals_){
       condition.notify_all();
-      if(condition.wait_for(mlock, threshold)){
+      if(condition.wait_for(mlock, threshold)){ //wait_until cna also be used
         return true;
       }
     }
