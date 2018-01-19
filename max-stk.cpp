@@ -194,6 +194,45 @@ void popMax(){
     maxNode = rightMost();
 }
 
+//cleaner approach
+class MaxStack{
+    std::list<int> l;   //dll
+    std::set<int> s;    //rb tree - balanced
+    unordered_map<int,unordered_set<list::iterator>> m; //elem to node mapping
+public:
+    void push(int a){
+        l.push_front(a);    //O1
+        s.insert(a);    //Ologn
+        m[a].insert(l.begin()); //O1
+    }
+    void pop(int &res){
+        int t = l.front();  //O1
+        m[t].erase(l.begin());  //O1
+        if(m[t].size() == 0){   //O1
+            m.erase(t);     //O1
+            s.erase(t); //Ologn
+        }
+        l.pop_front();  //O1
+        res = t;
+    }
+    int peek(){
+        return l.front();   //O1
+    }
+    int peekMax(){
+        return s.rbegin();  //O1
+    }
+    void popmax(int &res){
+        int t = s->rbegin();    //O1
+        list::iterator it = m[t].begin();   //O1
+        m[t].erase(it); //O1
+        if(m[t].size() == 0){   //O1
+            m.erase(t); //O1
+            s.erase(t); //Ologn
+        }
+        l.erase(it);    //O1
+        res = t;
+    }
+
 /* Not tested thoroughly.
  * Time complexity: As expected in the problem statement (denoted before each method)
  * Space complexity: O(n) where n is the number of elements. Note we use a LL and BST with special/extra fields.
