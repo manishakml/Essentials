@@ -58,64 +58,87 @@ pair<int,int> fntm(const string &fn, const vector<pkt> &A) {
     return res;
 }
 
-// Approach 2 without stack
-pair<int,int> fntm(const string &fn, const vector<string> &A) {
-    pair<int,int> res;
-    int f_start = -1, f_end = -1, excl = 0;
-    bool parent_seen = false, child_seen = false;
-    pkt child_pkt;
-    for(int i = 0; i < A.size(); i++) {
-        string t = A[i];
-        istringstream in(t);
+
+//approach without stack
+
+#include<iostream>
+#include<string>
+#include<vector>
+#include<sstream>
+using namespace std;
+
+struct pkt{
+        string fn;
+        bool start;
+        long time;
+};
+
+pkt parse_string(string s){
+        istringstream in(s);
         string val;
-        vector<string> B;
-        while(getline(in,val,',')) {
-            B.push_back(val);
-        }
-        pkt a;
-        a.name = B[0];
-        a.indicator = B[1] == "start"?1:0;
-        a.time = stoi(B[2]);
+        pkt res;
 
-        if(a.indicator && (a.name==fn || (parent_seen && !child_seen))) {
-            if(a.name==fn) {
-                parent_seen = true;
-                f_start = a.time;
-            } else {
-                child_seen = true;
-                child_pkt = a;
-            }
-        }
-        if(!a.indicator && (a.name==fn || a.name == child_pkt.name)){
-            if(a.name==fn) {
-                f_end = a.time;
-            } else {
-                excl += a.time - child_pkt.time;
-                child_seen = false;
-            }
-        }
-    }
-    res.first = f_end - f_start;
-    res.second = res.first - excl;
-    return res;
+        getline(in,val,',');
+        res.fn = val;
+        getline(in,val,',');
+        res.start = val == "START"?1:0;
+        getline(in,val,',');
+        res.time = stol(val);
+
+        return res;
 }
 
-int main() {
-    int n;
-    pkt p;
-    vector<pkt> A;
-    cout << "Enter n:";
-    cin >> n;
-    while(n--) {
-        cout << "\nEnter pkt details:";
-        cin >> p.name >> p.indicator >> p.time;
-        A.push_back(p);
-    }
+pair<long,long> fn_time(vector<string> &A, string fn){
+        pair<long,long> res;
+        int n = A.size();
+        if(n == 0){
+                return res;
+        }
+        long incl_time = 0, excl_time = 0, child_time = 0;
+        pkt p_pkt, c_pkt;
+        bool p_seen, c_seen;
 
-    pair<int,int> res = fntm("abc",A);
-    cout << endl << res.first << " " << res.second;
-    return 1;
+        for(int i = 0; i < A.size(); i++){
+                pkt p = parse_string(A[i]);
+                if(p.fn == fn){
+                        if(p.start){
+                                p_pkt = p;
+                                p_seen = true;
+                        } else {
+                                p_seen = false;
+                                incl_time += p.time - p_pkt.time;
+                        }
+                } else if(p_seen){
+                        if(p.start && !c_seen){
+                                c_pkt = p;
+                                c_seen = true;
+                        } else if(p.fn == c_pkt.fn){
+                                child_time += p.time - c_pkt.time;
+                                c_seen = false;
+                        }
+                 }
+        }
+        return make_pair(incl_time, incl_time - child_time);
 }
+
+int main(){
+        string in;
+        vector<string> A;
+        int n;
+        cout << "Enter n:";
+        cin >> n;
+        for(int i = 0; i < n; i++){
+                cout << "\nEnter string:";
+                cin >> in;
+                A.push_back(in);
+        }
+        cout << "\nEnter target:";
+        cin >> in;
+        pair<long,long> p = fn_time(A,in);
+        cout << p.first << ' ' << p.second;
+        return 1;
+}
+
 
 /* Not tested thoroughly.
  * Note: We should only bother about the immediate children of the function in question. Deeper nestings can be ignored.
