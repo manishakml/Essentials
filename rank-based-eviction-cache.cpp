@@ -52,6 +52,67 @@ public:
         }
 };
 
+
+//approach 2 - having only 2 DS
+template<class K, class V>
+class RetainBestCache{
+        vector<pair<K,V>> store_;       //to store the incoming collection
+        int capacity_;                  //max capacity of the cache after which eviction begins
+        unordered_map<K,V> cache_;      //cache of k,v pairs
+        set<pair<long,K>,[](pair<long,K> &a, pair<long,K> &b){return a.first < b.first;}> order_;    //ordered set of ranks,keys. First element is the highest rank and last is the lowest
+
+public:
+        RetainBestCache(vector<pair<K,V>> &A, int size){
+                store_ = A;
+                capacity_ = size;
+        }
+
+        V get(K key){
+                V res;
+                if(!cache_.count(key)){         //if it is a cache miss
+                        res = store_.get(key);
+                        put(key,res);           //get from store and cache it
+                } else {
+                        res = cache_[key];
+                }
+                return res;
+        }
+
+        void put(K key, V val){
+                cache_[key] = val;              //insert into cache
+                long rank = val.getRank();      //get element's rank and put it in the rank set. Add the elem's key to the list of elements with its rank.
+                order_.insert(make_pair(rank,key));
+                       
+                if(cache_.size() > capacity){   //eviction
+                        long lowest = order_->rbegin().first; //get lowest rank
+                        K k = order_->rbegin().second;   //get one of the lowest rank's keys
+                        order_.erase(order->rbegin());                      
+                        cache_.erase(k);        //evict the k,v pair from the cache to make room                 
+                }
+        }
+ 
+        //alternate implementation of put() not exceeding size of cache
+        void put(K key, V val){
+                cache_[key] = val;              //insert into cache
+                long rank = val.getRank();      //get element's rank and put it in the rank set. Add the elem's key to the list of elements with its rank.
+                order_.insert(rank);
+                       
+                if(cache_.size() == capacity){   //eviction only if the cur rank is higher than the lowest rank
+                        long lowest = order_->rbegin().first; //get lowest rank
+                        K k = order_->rbegin().second;   //get one of the lowest rank's keys
+                        if(rank > lowest){    //cur rank is higher
+                          order_.erase(order->rbegin());   //remove lowest rank                   
+                          cache_.erase(k);        //evict the k,v pair from the cache to make room
+                          cache_[key] = val;   //insert cur element
+                          order_.insert(make_pair(rank,key));
+                        } //if cache is full and cur rank is lower than lowest, ignore.
+                } else { //if cache is not full, insert element.
+                      cache_[key] = val;
+                      order_.insert(make_pair(rank,key));
+                }
+        }
+};
+
 /* If it has to be made thread safe, we use unique_lock on every cache, rank, order operation. But we have to avoid it on a store operation since it has been specified to be slow. */
 
 /* Not tested.
