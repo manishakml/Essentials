@@ -45,8 +45,8 @@ public:
       q.push_back(e);
       curSz++;
       hasElement.notify_one();
-      mlock.unlock();
     }
+    mlock.unlock();
     wlock.unlock();    
   }
 };
