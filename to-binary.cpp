@@ -9,6 +9,10 @@ string toBinary(int n){
         if(n < 0) {
                 return res;
         }
+        if(n == 0){
+                res = "0";
+                return res;
+        }
         while(n){
                 res += to_string(n%2);
                 n /= 2;
