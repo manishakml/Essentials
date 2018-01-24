@@ -13,26 +13,26 @@ or
 The trick is to identify that sibling is a potential solution or the only other (min) solution can exist in the subtree with the root's value (coz the sibling is greater and hence, all the sibling's children are greater)
 */
 
-void 2ndSmallest_helper(Node *root, int &res){
+void secondSmallest_helper(Node *root, int &res){
         if(root == nullptr || root->left == nullptr || root->right == nullptr){
                 return;
         }
         if(root->left->val == root->val){
                 res = min(res,root->right->val);
-                2ndSmallest_helper(root->left,res);
+                secondSmallest_helper(root->left,res);
         } else {        //root->right->val == root->val
                 res = min(res,root->left->val);
-                2ndSmallest_helper(root->right,res);
+                secondSmallest_helper(root->right,res);
         }
 
 }
-int 2ndSmallest(Node *root){
+int secondSmallest(Node *root){
         int res = INT_MAX;
-        2ndSmallest_helper(root, res);
+        secondSmallest_helper(root, res);
         return res;
 }
 
-/* Not tested.
+/* Not tested thoroughly.
  * Note: If kth smallest is needed, upto k times, delete the minimum. This is O(log(h)).
  * Time: O(h)
  * Space: O(h)
