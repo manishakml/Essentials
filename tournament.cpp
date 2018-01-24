@@ -13,7 +13,7 @@ or
 The trick is to identify that sibling is a potential solution or the only other (min) solution can exist in the subtree with the root's value (coz the sibling is greater and hence, all the sibling's children are greater)
 */
 
-int 2ndSmallest_helper(Node *root, int &res){
+void 2ndSmallest_helper(Node *root, int &res){
         if(root == nullptr || root->left == nullptr || root->right == nullptr){
                 return;
         }
