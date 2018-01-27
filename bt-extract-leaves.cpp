@@ -38,7 +38,7 @@ int helper(Node *root, vector<unordered_set<int>>& res) {
     return level+1;
  }
  
- vector<vector<int>> collectLeaves(Node *root) {
+ vector<unordered_set<int>> collectLeaves(Node *root) {
     vector<unordered_set<int>> res;
     helper(root, res);
     return res;
