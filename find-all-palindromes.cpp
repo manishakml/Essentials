@@ -13,7 +13,10 @@ unordered_set<string> findPalindromes(string s){
         return res;
     }
     int n = s.length();
-    if(n <= 1){
+    if(n == 0){
+        return res;
+    }
+    if(n == 1){
         res.insert(s);
         return res;
     }
