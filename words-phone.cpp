@@ -48,7 +48,7 @@ vector<string> m = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 class TrieNode {
 public:
     unordered_map<char, TrieNode*> children;
-    bool isEnd;
+    bool isEnd = false;
 };
 
 void insert(TrieNode *root, string s){ 
@@ -67,15 +67,17 @@ void insert(TrieNode *root, string s){
 
 void helper(string digits, vector<string> &res, string ans, int pos,int n, TrieNode *root) {
         // cout << "ans: " << ans << " pos: " << pos << " root: " << root << endl << flush;
-        if(pos == n){ 
-            res.push_back(ans);
+        if(pos == n){
+            if(root && root->isEnd){
+              res.push_back(ans);
+            }
             return;
         }   
         for(const char &a: m[digits[pos] - '0']) {
             if(root->children.find(a) == root->children.end()){
                 continue;
             }   
-            ans[pos] = a;
+            ans += a;
             helper(digits,res,ans,pos+1,n,root->children[a]);
         }   
 }
@@ -83,7 +85,7 @@ vector<string> letterCombinations(string digits, TrieNode *root) {
         vector<string> res;
         int n = digits.size();
         if(!n) return res;
-        string ans(n,0);
+        string ans = "";
         helper(digits,res,ans,0,n,root);
         return res;
 }
