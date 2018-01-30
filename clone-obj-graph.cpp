@@ -42,7 +42,7 @@ Node *clone(Node *root){
                 q.push(c);
             }
             if(t == root){
-                newRoot = t;
+                newRoot = clone;
             }
         }
     }
