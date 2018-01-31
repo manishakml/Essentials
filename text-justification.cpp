@@ -49,7 +49,7 @@ public:
                     e--;
                 }
                 //Unequal will always be < legit_spaces ( We used a modulo). So, sufficient to distribute 1 space per gap.
-                if(unequal_space && !last_line) {
+                if(unequal_space) {
                     s += " ";
                     unequal_space--;
                 }
