@@ -66,18 +66,21 @@ void flatten(Node *head) {
             tophead->prev = cur;
             toptail->next = downhead;
             downhead->prev = toptail;
-            next->prev = downtail;
+            if(next)
+             next->prev = downtail;
             downtail->next = next;
         } else if(up){
             cur->next = tophead;
             tophead->prev = cur;
             toptail->next = next;
-            next->prev = toptail;
+            if(next)
+              next->prev = toptail;
         } else if(down){
             cur->next = downhead;
             downhead->prev = cur;
             downtail->next = next;
-            next->prev = downtail;
+            if(next)
+               next->prev = downtail;
         }
         cur = cur->next;
     }
