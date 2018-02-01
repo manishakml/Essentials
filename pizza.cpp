@@ -5,7 +5,7 @@
  * By 1 & 2, we see that we need both conditions to be fulfilled while making the cuts.
  
  * Is there a recurrence relation that we can come up with? If Rn is the number of regions that exist, by drawing the new line fulfilling the above conditions, what is Rn+1?
- * Ans: Rn+1 = Rn + n + 1 or Rn = Rn-1 + n. Let there be n lines; therefore there are n+! spaces (think of n parallel lines). Consider a new line like a car. It starts and intersects 1 line ,2nd line and so on. It passes through n+1 regions and divides them into 2, thereby adding n+1 'new' regions. Hence, Rn+1 = Rn + (n+1).
+ * Ans: Rn+1 = Rn + n + 1 or Rn = Rn-1 + n. Let there be n lines; therefore there are n+1 spaces (think of n parallel lines). Consider a new line like a car. It starts and intersects 1 line ,2nd line and so on. It passes through n+1 regions and divides them into 2, thereby adding n+1 'new' regions. Hence, Rn+1 = Rn + (n+1).
  * Solving the recurrence, Rn = (Rn-2 + n-1) + n = ((Rn-3 + n-2) + n-1) + n ....= R0 + 1+2+...n-1+n = 1 + (1+...n) = 1 + (n(n+1))/2. We see that it does not depend on previous Rn anymore.
  * Hence, this problem reduces to finding the solution based on the formula = O(1).
  */
