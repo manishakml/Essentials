@@ -34,7 +34,7 @@ int helper(Node *root, vector<unordered_set<int>>& res) {
      level = max(level, helper(c,res));
     }
     if(level == (int)res.size()) res.push_back(unordered_set<int>());
-    res[level].push_back(root->val);
+    res[level].insert(root->val);
     return level+1;
  }
  
