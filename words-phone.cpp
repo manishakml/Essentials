@@ -65,7 +65,7 @@ void insert(TrieNode *root, string s){
 }
 
 
-void helper(string digits, vector<string> &res, string ans, int pos,int n, TrieNode *root) {
+void helper(string digits, vector<string> &res, string &ans, int pos,int n, TrieNode *root) {
         // cout << "ans: " << ans << " pos: " << pos << " root: " << root << endl << flush;
         if(pos == n){
             if(root && root->isEnd){
@@ -79,6 +79,7 @@ void helper(string digits, vector<string> &res, string ans, int pos,int n, TrieN
             }   
             ans += a;
             helper(digits,res,ans,pos+1,n,root->children[a]);
+            ans.pop_back();
         }   
 }
 vector<string> letterCombinations(string digits, TrieNode *root) {
