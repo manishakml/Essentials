@@ -23,7 +23,7 @@ bool path(vector<vector<int>> &A, pair<int,int> &s, pair<int,int> &e){
   vector<int> C = {1,0,-1,0};
   
   while(!q.empty()){
-    t = q.front();
+    pair<int,int> t = q.front();
     q.pop();
     A[t.first][t.second] = 1;
     for(int k = 0; k < 4; k++){
