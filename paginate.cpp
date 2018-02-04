@@ -31,6 +31,35 @@ vector<string> paginate(string s, int len) {
     return res;
 }
 
+//revised approach
+vector<string> paginate(string s, int len) {
+    vector<string> res;
+    istringstream in(s);
+    string ans = "";
+    string val;
+    while(in >> val) {
+        if(val.length() > len) {
+            continue;
+        }
+        if(ans.length() + val.length() == len){
+                ans += val;
+                res.push_back(ans);
+                ans.clear();
+        } else if (ans.length() + val.length() > len) {
+                res.push_back(ans);
+                ans.clear();
+                ans += val + " ";
+        } else {
+                ans += val + " ";
+        }
+    }
+    if(!ans.empty()){
+        res.push_back(ans);
+    }
+    return res;
+}
+
+
 int main(){
     string s = "asdas asdasd ccddfsdf asdaerdsb          a\
                 asdasewe daeweqweda sdawew asdasdweqe weqwe  weqwe\
