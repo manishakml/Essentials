@@ -75,7 +75,7 @@ void findPath(TreeNode* node, int sum, vector<int>& path) {
         if (node == nullptr) return;
         path.push_back(node->val);
         if (sum == node->val)
-            return);
+            return;
         findPaths(node->left, sum-node->val, path);
         findPaths(node->right, sum-node->val, path);
         path.pop_back();
