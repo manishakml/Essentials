@@ -31,7 +31,7 @@ vector<line> draw(int n){
  vector<line> res;
  double m = 0, c = 0;
  for(int i = 0; i < n; i++){
-  res[i].push_back(new line(m,c));
+  res.push_back(new line(m,c));
   //increase m and c by 1 (or any arbitrary amt) progressively to get unique lines that intersect all previous lines.
   m += 1;
   c += 1;
