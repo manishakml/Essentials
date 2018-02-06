@@ -9,7 +9,7 @@ List* union(List *a, List *b){
                 int A = a->val;
                 int B = b->val;
                 /* if (1,2,2,1) and (2,2) and output should be (1,2,1) and not (1,2,2,1) then use the below line:
-                if(A == B && (!tail || (tail && tail->val == A)) continue;
+                if((tail && tail->val == A)) {a=a->next; b = b->next;}
                 */
                 //if they are equal, we have to merge only one, but move both. From our logic below, if they are equal b is merged and moved. So, a has t be moved explicitly.
                 if(A == B) a = a->next;
@@ -44,7 +44,7 @@ List *intersection(List *l1, List *l2) {
                     l1 = l1->next;
             }else if(l2->val < l1-val){
                     l2 = l2->next;
-            } else {                    //(1,2,2,1) and (1,2). If we need the output as (2) and not (2,2), make a modification to this line: else if (!tail || (tail && tail->val != l1->val))
+            } else {                    //(1,2,2,1) and (1,2). If we need the output as (2) and not (2,2), make a modification to this line: else if ((tail && tail->val != l1->val))
                 a_n_a(h,t,l1,l2);
             }*/
     }
